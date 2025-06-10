@@ -15,14 +15,87 @@ export default function Home() {
       </nav>
 
       {/* Main Content */}
-      <main className="flex flex-col items-center w-full pt-32 px-4">
-        <h1 className="text-5xl sm:text-6xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-purple-400 to-purple-700 drop-shadow-[0_2px_32px_rgba(168,140,255,0.8)] leading-tight pb-2 overflow-visible">hello, i'm sagar</h1>
-        <p className="text-xl sm:text-2xl text-gray-300 mb-8 text-center max-w-2xl">
-          welcome to my personal portfolio website!
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xs sm:max-w-none justify-center">
-          <a href="#projects" className="border-2 border-purple-600 hover:bg-purple-400 text-white font-semibold py-3 px-8 rounded-lg shadow-lg text-lg text-center transition">view my work</a>
-          <a href="#contact" className="border-2 border-purple-600 hover:bg-purple-400 hover:text-white text-purple-200 font-semibold py-3 px-8 rounded-lg text-lg text-center transition">contact me</a>
+      <main className="flex flex-col items-center w-full pt-32 px-4 -mt-[30px]">
+        <div className="flex flex-col sm:flex-row items-center sm:justify-between justify-center w-full max-w-5xl px-0 gap-4 mb-8">
+          <a href="#projects" className="border-2 border-purple-600 hover:bg-purple-400 text-white font-semibold py-3 px-8 rounded-lg shadow-lg text-lg text-center transition order-1 sm:order-none">view my work</a>
+          <div className="flex-1 flex flex-col items-center">
+            <h1 className="text-5xl sm:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-purple-400 to-purple-700 drop-shadow-[0_2px_32px_rgba(168,140,255,0.8)] leading-tight pb-2 overflow-visible">hello, i'm sagar sahu</h1>
+            <p className="text-xl sm:text-2xl text-gray-300 text-center max-w-2xl">
+              welcome to my personal portfolio website!
+            </p>
+          </div>
+          <a href="#contact" className="border-2 border-purple-600 hover:bg-purple-400 hover:text-white text-purple-200 font-semibold py-3 px-8 rounded-lg text-lg text-center transition order-2 sm:order-none">contact me</a>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-6 w-full max-w-[90rem] mt-7 justify-center items-stretch">
+          {/* Left Box: Profile */}
+          <div className="bg-[#32323a] rounded-xl p-8 flex flex-col items-center shadow-md min-h-[320px] border-2 border-[#3a3a42] sm:mr-0 min-w-[20rem] max-w-[22rem] w-full">
+            <div className="w-36 h-36 rounded-full bg-gray-500 mb-6 overflow-hidden flex items-center justify-center border-2 border-[#4b4b55]">
+              <img src="/profile_pic.jpg" alt="Sagar Sahu" className="object-cover w-full h-full" />
+            </div>
+            <p className="text-xl text-gray-200 text-center font-extrabold">hi, i'm an undergraduate student and software developer passionate about building impactful solutions using a variety of technologies! feel free to explore my work and get in touch if you'd like to collaborate.</p>
+          </div>
+          {/* Right Box: Skills */}
+          <div className="flex-grow bg-[#32323a] rounded-[0.9rem] p-[1.8rem] shadow-md min-h-[289px] border-2 border-[#3a3a42] flex flex-col justify-center min-w-[40rem] max-w-[44rem]">
+            <h2 className="text-[1.8rem] font-bold text-white mb-[1.08rem] text-center flex items-center justify-center gap-[0.9rem]">
+              technical skills
+            </h2>
+            <div className="flex flex-col gap-[1.08rem]">
+              {/* Programming Languages & Technical Skills */}
+              <div>
+                <h3 className="text-[1.08rem] font-semibold text-white mb-[0.9rem] text-center">programming languages (frontend, backend, devops)</h3>
+                <div className="flex flex-wrap gap-[0.9rem] justify-center">
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Java</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">JavaScript</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Python</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">C</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">C++</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">HTML</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">CSS</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">PostgreSQL</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">TypeScript</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Bash</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">R</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">UML</span>
+                </div>
+              </div>
+              <div className="h-2"></div>
+              {/* Libraries & Data Science Tools */}
+              <div>
+                <h3 className="text-[1.08rem] font-semibold text-white mb-[0.9rem] text-center">libraries (machine learning, data science)</h3>
+                <div className="flex flex-wrap gap-[0.9rem] justify-center">
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">PyTorch</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">TensorFlow</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Pandas</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">NumPy</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Scikit-Learn</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Matplotlib</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">JUnit</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Anaconda</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">JupyterLab</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Kaggle</span>
+                </div>
+              </div>
+              <div className="h-2"></div>
+              {/* Tools & Frameworks */}
+              <div>
+                <h3 className="text-[1.08rem] font-semibold text-white mb-[0.9rem] text-center">tools & frameworks (web development, data engineering, full-stack)</h3>
+                <div className="flex flex-wrap gap-[0.9rem] justify-center">
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">MongoDB</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Express.js</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">React.js</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Node.js</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Next.js</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Git</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Jira</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Postman</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Unix</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Linux</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">Looker</span>
+                  <span className="px-[3.6px] py-[0.9px] rounded-full border border-purple-600 text-white text-[0.9rem]">BigQuery</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </div>
