@@ -33,13 +33,13 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center bg-[#252529] text-white relative overflow-hidden">
       {/* Navigation Bar */}
-      <nav className="w-full flex justify-center py-6 absolute top-0 left-0 z-10">
+      <nav className="w-full flex justify-center py-6 fixed top-0 left-0 z-30 backdrop-blur-md bg-[#252529cc] border-b border-purple-700/40 transition-all duration-300">
         <ul className="flex gap-8 sm:gap-12 md:gap-16 text-xl sm:text-2xl font-semibold">
-          <li><a href="#home" className="hover:text-purple-300 transition">home</a></li>
-          <li><a href="#education" className="hover:text-purple-300 transition">education</a></li>
-          <li><a href="#experience" className="hover:text-purple-300 transition">experience</a></li>
-          <li><a href="#projects" className="hover:text-purple-300 transition">projects</a></li>
-          <li><a href="#contact" className="hover:text-purple-300 transition">contact</a></li>
+          <li><a href="#home" className="hover:text-purple-500 transition">home</a></li>
+          <li><a href="#education" className="hover:text-purple-500 transition">education</a></li>
+          <li><a href="#experience" className="hover:text-purple-500 transition">experience</a></li>
+          <li><a href="#projects" className="hover:text-purple-500 transition">projects</a></li>
+          <li><a href="#contact" className="hover:text-purple-500 transition">contact</a></li>
         </ul>
       </nav>
 
@@ -61,7 +61,7 @@ export default function Home() {
             <div className="w-36 h-36 rounded-full bg-gray-500 mb-6 overflow-hidden flex items-center justify-center border-2 border-[#4b4b55]">
               <img src="/profile_pic.jpg" alt="Sagar Sahu" className="object-cover w-full h-full" />
             </div>
-            <p className="text-lg text-gray-200 text-center font-extrabold">hi, i'm an undergraduate student and software developer passionate about building impactful solutions using a variety of technologies! feel free to explore my work and get in touch if you'd like to collaborate. thanks for visitng!</p>
+            <p className="text-lg text-gray-200 text-center font-extrabold">i'm an undergraduate student and avid software developer passionate about building impactful solutions in ai, ml, swe, and the fintech space! feel free to explore my work and get in touch if you'd like to collaborate. thanks for visitng!</p>
             <div className="flex gap-4 mt-8 w-full justify-center">
               <a href="https://www.linkedin.com/in/sagar-sahu-398493223/" target="_blank" rel="noopener noreferrer" className="bg-black hover:bg-purple-500 text-white rounded-full p-3 transition flex items-center justify-center" aria-label="LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
@@ -146,7 +146,7 @@ export default function Home() {
               education
             </h2>
             <div className="w-16 h-1 bg-purple-600 rounded-full mb-6"></div>
-            <img src="/RPI_logo.png" alt="Education" className="rounded-xl w-0.8 h-32 object-cover mb-4 filter invert brightness-20 grayscale" />
+            <img src="/RPI_logo.png" alt="Education" className="rounded-xl w-0.8 h-20 object-cover mb-4 filter invert brightness-20 grayscale" />
             <div className="w-full flex flex-col items-center space-y-4 text-center">
               <h3 className="text-4xl font-bold text-purple-400 mb-2 leading-tight">bachelor of science (b.s.) in computer science</h3>
               <p className="text-3xl text-purple-300 mb-2 leading-tight">concentration: artificial intelligence and data, minor: economics of banking & finance</p>
