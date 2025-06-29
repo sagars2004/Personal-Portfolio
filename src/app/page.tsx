@@ -35,29 +35,29 @@ export default function Home() {
       {/* Navigation Bar */}
       <nav className="w-full flex justify-center py-6 fixed top-0 left-0 z-30 backdrop-blur-md bg-[#252529cc] border-b border-purple-700/40 transition-all duration-300">
         <ul className="flex gap-8 sm:gap-12 md:gap-16 text-xl sm:text-2xl font-semibold">
-          <li><a href="#home" className="hover:text-purple-500 transition">home</a></li>
-          <li><a href="#education" className="hover:text-purple-500 transition">education</a></li>
-          <li><a href="#experience" className="hover:text-purple-500 transition">experience</a></li>
-          <li><a href="#projects" className="hover:text-purple-500 transition">projects</a></li>
-          <li><a href="#contact" className="hover:text-purple-500 transition">contact</a></li>
+          <li><a href="/" className="text-purple-500 transition">home</a></li>
+          <li><a href="/education" className="hover:text-purple-500 transition">education</a></li>
+          <li><a href="/experience" className="hover:text-purple-500 transition">experience</a></li>
+          <li><a href="/projects" className="hover:text-purple-500 transition">projects</a></li>
+          <li><a href="/contact" className="hover:text-purple-500 transition">contact</a></li>
         </ul>
       </nav>
 
       {/* Main Content */}
       <main className="flex flex-col items-center w-full pt-32 px-4 -mt-[30px]">
         <div className="flex flex-col sm:flex-row items-center sm:justify-between justify-center w-full max-w-5xl px-0 gap-4 mb-8">
-          <a href="#experience" className="border-2 border-purple-600 hover:bg-purple-400 text-white font-semibold py-3 px-8 rounded-lg shadow-lg text-lg text-center transition order-1 sm:order-none">view my work</a>
+          <a href="/experience" className="border-2 border-purple-600 hover:bg-purple-400 text-white font-semibold py-3 px-8 rounded-lg shadow-lg text-lg text-center transition order-1 sm:order-none">view my work</a>
           <div className="flex-1 flex flex-col items-center">
             <TypingEffect text="hi, i'm sagar sahu" className="text-5xl sm:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-purple-400 to-purple-700 drop-shadow-[0_2px_32px_rgba(168,140,255,0.8)] leading-tight pb-2 overflow-visible" />
             <p className="text-xl sm:text-2xl text-gray-300 text-center max-w-2xl">
               welcome to my personal portfolio website!
             </p>
           </div>
-          <a href="#contact" className="border-2 border-purple-600 hover:bg-purple-400 hover:text-white text-purple-200 font-semibold py-3 px-8 rounded-lg text-lg text-center transition order-2 sm:order-none">contact me</a>
+          <a href="/contact" className="border-2 border-purple-600 hover:bg-purple-400 hover:text-white text-purple-200 font-semibold py-3 px-8 rounded-lg text-lg text-center transition order-2 sm:order-none">contact me</a>
         </div>
         <div className="flex flex-col sm:flex-row gap-6 w-full max-w-[90rem] mt-7 justify-center items-stretch">
           {/* Left Box: Profile */}
-          <div className="bg-[#32323a] rounded-xl p-8 flex flex-col items-center shadow-md min-h-[320px] border-2 border-[#3a3a42] sm:mr-0 min-w-[20rem] max-w-[22rem] w-full">
+          <div className="bg-[#23232a] hover:bg-[#32323a] transition-all duration-300 rounded-xl p-8 flex flex-col items-center shadow-md min-h-[320px] border-2 border-[#3a3a42] sm:mr-0 min-w-[20rem] max-w-[22rem] w-full hover:-translate-y-1.5">
             <div className="w-36 h-36 rounded-full bg-gray-500 mb-6 overflow-hidden flex items-center justify-center border-2 border-[#4b4b55]">
               <img src="/profile_pic.jpg" alt="Sagar Sahu" className="object-cover w-full h-full" />
             </div>
@@ -76,7 +76,7 @@ export default function Home() {
             </div>
           </div>
           {/* Right Box: Skills */}
-          <div className="flex-grow bg-[#32323a] rounded-[0.9rem] p-[1.8rem] shadow-md min-h-[289px] border-2 border-[#3a3a42] flex flex-col justify-center min-w-[40rem] max-w-[44rem]">
+          <div className="flex-grow bg-[#23232a] hover:bg-[#32323a] transition-all duration-300 rounded-[0.9rem] p-[1.8rem] shadow-md min-h-[289px] border-2 border-[#3a3a42] flex flex-col justify-center min-w-[40rem] max-w-[44rem] hover:-translate-y-1.5">
             <h2 className="text-[1.8rem] font-bold text-white mb-[1.08rem] text-center flex items-center justify-center gap-[0.9rem]">
               technical skills
             </h2>
@@ -138,35 +138,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* Education Section */}
-        <section className="w-full flex justify-center mt-20">
-          <div id="education-card" className="bg-[#23232a] rounded-2xl shadow-lg p-8 max-w-5xl w-full flex flex-col items-center border border-[#32323a] scroll-mt-24">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white flex items-center gap-3 mb-2">
-              education
-            </h2>
-            <div className="w-16 h-1 bg-purple-600 rounded-full mb-6"></div>
-            <img src="/RPI_logo.png" alt="Education" className="rounded-xl w-0.8 h-20 object-cover mb-4 filter invert brightness-20 grayscale" />
-            <div className="w-full flex flex-col items-center space-y-4 text-center">
-              <h3 className="text-4xl font-bold text-purple-400 mb-2 leading-tight">bachelor of science (b.s.) in computer science</h3>
-              <p className="text-3xl text-purple-300 mb-2 leading-tight">concentration: artificial intelligence and data, minor: economics of banking & finance</p>
-              <p className="text-2xl text-gray-200 mb-2">rensselaer polytechnic institute- school of science (troy, ny)</p>
-              <p className="text-2xl text-gray-400 mb-1">sep 2022 - may 2026</p>
-              <ul className="text-xl text-gray-300 mb-2 list-disc list-inside">
-                <li>relevant coursework: intro to ai, software design & documentation, database systems, principles of software, data structures, algorithms, programming languages, operating systems, computer organization, foundations of cs, money and banking, microeconomic theory, differential equations, multivariable calculus and matrix algebra</li> 
-              </ul>
-              <ul className="text-xl text-gray-300 mb-2 list-disc list-inside">
-                <li>extracurriculars: rensselaer center for open source, google developer groups on campus, tau epsilon phi</li>
-              </ul>
-              <ul className="text-xl text-gray-300 mb-2 list-disc list-inside">
-                <li>honors and distinctions: dean's honor list (s24, f24, s25), rpi leadership and recognition award</li>
-              </ul>
-              <ul className="text-xl text-gray-300 mb-2 list-disc list-inside">
-                <li>certifications: google cloud data analytics certificate, j.p. morgan chase software engineering job experience, walmart global tech swe experience</li>
-              </ul>
-            </div>
-          </div>
-        </section>
       </main>
     </div>
   );
