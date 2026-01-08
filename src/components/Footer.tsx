@@ -30,7 +30,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="py-12 px-4 border-t border-white/10">
+    <footer className="py-16 px-4 border-t border-white/5 bg-[#0a0a0b]">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Navigation Links */}
@@ -39,7 +39,7 @@ export default function Footer() {
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="text-sm text-gray-400 hover:text-rose-400 transition-colors"
+                className="text-sm text-gray-500 hover:text-rose-400 transition-colors"
               >
                 {link.label}
               </button>
@@ -54,7 +54,7 @@ export default function Footer() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-rose-400 transition-colors"
+                className="p-2 rounded-lg text-gray-500 hover:text-rose-400 hover:bg-rose-500/10 transition-all"
                 aria-label={link.name}
               >
                 {getSocialIcon(link.icon)}
@@ -64,11 +64,11 @@ export default function Footer() {
         </div>
 
         {/* Attribution */}
-        <div className="mt-8 pt-8 border-t border-white/5 text-center">
-          <p className="text-sm text-gray-500 flex items-center justify-center gap-1">
-            Made with <FaHeart className="w-4 h-4 text-rose-500" /> by Sagar Sahu
+        <div className="mt-12 pt-8 border-t border-white/5 text-center">
+          <p className="text-sm text-gray-600 flex items-center justify-center gap-1">
+            Made with <FaHeart className="w-4 h-4 text-rose-500 animate-pulse" /> by Sagar Sahu
           </p>
-          <p className="text-xs text-gray-600 mt-2">
+          <p className="text-xs text-gray-700 mt-2">
             © {new Date().getFullYear()} All rights reserved.
           </p>
         </div>

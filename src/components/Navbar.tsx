@@ -20,10 +20,8 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if page is scrolled
       setIsScrolled(window.scrollY > 50);
 
-      // Determine active section
       const sections = navLinks.map((link) => document.getElementById(link.id));
       const scrollPosition = window.scrollY + 100;
 
@@ -52,32 +50,32 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "glass border-b border-rose-500/20"
-          : "bg-transparent"
+          ? "glass border-b border-rose-500/10 py-3"
+          : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between">
           {/* Logo */}
           <button
             onClick={() => scrollToSection("home")}
-            className="text-xl font-bold text-white hover:text-rose-400 transition-colors"
+            className="text-2xl font-bold text-white hover:text-rose-400 transition-colors"
           >
-            SS
+            SS<span className="text-rose-500">.</span>
           </button>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <button
                   onClick={() => scrollToSection(link.id)}
-                  className={`text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     activeSection === link.id
-                      ? "text-rose-400"
-                      : "text-gray-300 hover:text-white"
+                      ? "text-rose-400 bg-rose-500/10"
+                      : "text-gray-400 hover:text-white hover:bg-white/5"
                   }`}
                 >
                   {link.label}
@@ -89,7 +87,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-white p-2"
+            className="md:hidden text-white p-2 rounded-lg hover:bg-white/5 transition-colors"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
@@ -104,18 +102,18 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isMenuOpen ? "max-h-96" : "max-h-0"
+          isMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <ul className="glass border-t border-rose-500/20 px-4 py-4 space-y-2">
+        <ul className="glass border-t border-rose-500/10 px-4 py-4 space-y-1 mt-2">
           {navLinks.map((link) => (
             <li key={link.id}>
               <button
                 onClick={() => scrollToSection(link.id)}
-                className={`block w-full text-left px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`block w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                   activeSection === link.id
                     ? "text-rose-400 bg-rose-500/10"
-                    : "text-gray-300 hover:text-white hover:bg-white/5"
+                    : "text-gray-400 hover:text-white hover:bg-white/5"
                 }`}
               >
                 {link.label}

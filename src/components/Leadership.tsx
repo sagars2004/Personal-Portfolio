@@ -6,29 +6,34 @@ import { leadership } from "@/data/leadership";
 
 export default function Leadership() {
   return (
-    <section id="leadership" className="py-20 px-4 scroll-mt-16">
-      <div className="max-w-5xl mx-auto">
+    <section id="leadership" className="min-h-screen py-24 px-4 scroll-mt-16 relative">
+      {/* Background accent */}
+      <div className="absolute top-1/4 right-0 w-1/3 h-1/2 bg-rose-500/5 rounded-full blur-3xl" />
+      
+      <div className="max-w-5xl mx-auto relative z-10">
         <SectionHeading title="Leadership & Involvement" />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {leadership.map((item) => (
             <div
               key={item.id}
-              className="card p-6 hover:border-rose-500/30 group"
+              className="card p-8 group"
             >
               {/* Icon */}
-              <div className="w-12 h-12 rounded-xl bg-rose-500/10 flex items-center justify-center mb-4 group-hover:bg-rose-500/20 transition-colors">
-                <FaUsers className="w-6 h-6 text-rose-400" />
+              <div className="w-14 h-14 rounded-2xl bg-rose-500/10 flex items-center justify-center mb-6 group-hover:bg-rose-500/20 transition-colors">
+                <FaUsers className="w-7 h-7 text-rose-400" />
               </div>
 
               {/* Title & Organization */}
-              <h3 className="text-lg font-bold text-white mb-1">{item.title}</h3>
-              <p className="text-rose-400 font-medium text-sm mb-2">
+              <h3 className="text-lg font-bold text-white mb-2 group-hover:text-rose-400 transition-colors">
+                {item.title}
+              </h3>
+              <p className="text-rose-400 font-medium text-sm mb-3">
                 {item.organization}
               </p>
 
               {/* Date */}
-              <div className="flex items-center gap-1 text-xs text-gray-400 mb-3">
+              <div className="flex items-center gap-2 text-xs text-gray-500 mb-4">
                 <FaCalendarAlt className="w-3 h-3" />
                 <span>
                   {item.startDate} - {item.endDate}
@@ -36,7 +41,7 @@ export default function Leadership() {
               </div>
 
               {/* Description */}
-              <p className="text-gray-300 text-sm leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed">
                 {item.description}
               </p>
             </div>

@@ -9,8 +9,11 @@ export default function Projects() {
   const otherProjects = projects.filter((p) => !p.featured);
 
   return (
-    <section id="projects" className="py-20 px-4 scroll-mt-16">
-      <div className="max-w-6xl mx-auto">
+    <section id="projects" className="min-h-screen py-24 px-4 scroll-mt-16 relative">
+      {/* Background accent */}
+      <div className="absolute top-0 left-0 w-1/3 h-1/2 bg-rose-500/5 rounded-full blur-3xl" />
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading title="Projects" />
 
         {/* Featured Projects Grid */}
@@ -18,24 +21,24 @@ export default function Projects() {
           {featuredProjects.map((project) => (
             <div
               key={project.id}
-              className="card p-6 hover:border-rose-500/30 group"
+              className="card p-8 group"
             >
               {/* Title */}
-              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-rose-400 transition-colors">
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-rose-400 transition-colors">
                 {project.title}
               </h3>
 
               {/* Description */}
-              <p className="text-gray-300 text-sm leading-relaxed mb-4">
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">
                 {project.description}
               </p>
 
               {/* Technologies */}
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-2 mb-6">
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-2 py-1 text-xs rounded bg-rose-500/10 text-rose-400 border border-rose-500/20"
+                    className="px-3 py-1 text-xs rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20"
                   >
                     {tech}
                   </span>
@@ -43,7 +46,7 @@ export default function Projects() {
               </div>
 
               {/* Links */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 pt-4 border-t border-white/10">
                 {project.githubUrl && (
                   <a
                     href={project.githubUrl}
@@ -51,8 +54,8 @@ export default function Projects() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm text-gray-400 hover:text-rose-400 transition-colors"
                   >
-                    <FaGithub className="w-4 h-4" />
-                    <span>Code</span>
+                    <FaGithub className="w-5 h-5" />
+                    <span>View Code</span>
                   </a>
                 )}
                 {project.liveUrl && (
@@ -62,7 +65,7 @@ export default function Projects() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm text-gray-400 hover:text-rose-400 transition-colors"
                   >
-                    <FaExternalLinkAlt className="w-3 h-3" />
+                    <FaExternalLinkAlt className="w-4 h-4" />
                     <span>Live Demo</span>
                   </a>
                 )}
@@ -74,22 +77,25 @@ export default function Projects() {
         {/* Other Projects List */}
         {otherProjects.length > 0 && (
           <div>
-            <h3 className="text-lg font-semibold text-gray-300 mb-4">
-              Other Projects
+            <h3 className="text-lg font-semibold text-gray-300 mb-6">
+              Other Notable Projects
             </h3>
             <div className="space-y-3">
               {otherProjects.map((project) => (
                 <div
                   key={project.id}
-                  className="group flex items-center justify-between p-4 rounded-lg bg-[#23232a] border border-white/10 hover:border-rose-500/30 transition-all"
+                  className="group flex items-center justify-between p-5 rounded-xl bg-white/5 border border-white/10 hover:border-rose-500/30 hover:bg-white/[0.07] transition-all"
                 >
-                  <div className="flex items-center gap-3">
-                    <FaArrowRight className="w-3 h-3 text-rose-400 group-hover:translate-x-1 transition-transform" />
-                    <span className="text-white group-hover:text-rose-400 transition-colors">
-                      {project.title}
-                    </span>
+                  <div className="flex items-center gap-4">
+                    <FaArrowRight className="w-4 h-4 text-rose-400 group-hover:translate-x-1 transition-transform" />
+                    <div>
+                      <span className="text-white font-medium group-hover:text-rose-400 transition-colors">
+                        {project.title}
+                      </span>
+                      <p className="text-sm text-gray-500 mt-1">{project.description.slice(0, 80)}...</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-3">
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
@@ -97,7 +103,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         className="p-2 text-gray-400 hover:text-rose-400 transition-colors"
                       >
-                        <FaGithub className="w-4 h-4" />
+                        <FaGithub className="w-5 h-5" />
                       </a>
                     )}
                   </div>

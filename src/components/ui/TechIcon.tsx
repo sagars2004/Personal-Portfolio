@@ -72,22 +72,24 @@ export default function TechIcon({ icon, name, className = "" }: TechIconProps) 
   if (!IconComponent) {
     return (
       <div
-        className={`flex flex-col items-center justify-center p-4 rounded-xl bg-[#23232a] border border-white/10 hover:border-rose-500/50 transition-all duration-300 hover:-translate-y-1 ${className}`}
+        className={`group flex flex-col items-center justify-center w-20 h-24 ${className}`}
       >
-        <div className="w-10 h-10 flex items-center justify-center text-2xl text-gray-400">
+        <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-xl text-gray-500 group-hover:border-rose-500/30 group-hover:bg-rose-500/5 transition-all">
           ?
         </div>
-        <span className="mt-2 text-sm text-gray-300">{name}</span>
+        <span className="mt-2 text-xs text-gray-400 text-center">{name}</span>
       </div>
     );
   }
 
   return (
     <div
-      className={`flex flex-col items-center justify-center p-4 rounded-xl bg-[#23232a] border border-white/10 hover:border-rose-500/50 transition-all duration-300 hover:-translate-y-1 ${className}`}
+      className={`group flex flex-col items-center justify-center w-20 h-24 ${className}`}
     >
-      <IconComponent className="w-10 h-10 text-gray-300 group-hover:text-rose-400" />
-      <span className="mt-2 text-sm text-gray-300">{name}</span>
+      <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-rose-500/30 group-hover:bg-rose-500/5 group-hover:-translate-y-1 transition-all duration-300">
+        <IconComponent className="w-7 h-7 text-gray-400 group-hover:text-rose-400 transition-colors" />
+      </div>
+      <span className="mt-2 text-xs text-gray-400 group-hover:text-gray-300 text-center transition-colors">{name}</span>
     </div>
   );
 }

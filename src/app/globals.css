@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #1a1a1d;
-  --background-card: #23232a;
-  --background-card-hover: #2d2d35;
+  --background: #0a0a0b;
+  --background-card: #141418;
+  --background-card-hover: #1a1a1f;
   --foreground: #ffffff;
   --foreground-secondary: #d1d5db;
   --foreground-muted: #9ca3af;
@@ -24,6 +24,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 html {
@@ -54,15 +55,16 @@ html {
   color: white;
 }
 
-/* Custom utilities */
+/* Glass effect */
 .glass {
   backdrop-filter: blur(12px);
-  background: rgba(26, 26, 29, 0.8);
+  background: rgba(10, 10, 11, 0.8);
 }
 
+/* Card styles */
 .card {
   background: var(--background-card);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1rem;
   transition: all 0.3s ease;
 }
@@ -70,11 +72,12 @@ html {
 .card:hover {
   background: var(--background-card-hover);
   transform: translateY(-4px);
+  border-color: rgba(244, 63, 94, 0.3);
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 50%, var(--accent) 100%);
+  background: linear-gradient(135deg, #f43f5e 0%, #fb7185 50%, #f43f5e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -94,6 +97,7 @@ html {
 .btn-accent:hover {
   background: var(--accent);
   color: white;
+  box-shadow: 0 0 30px rgba(244, 63, 94, 0.4);
 }
 
 /* Section divider */
@@ -102,4 +106,75 @@ html {
   height: 4px;
   background: var(--accent);
   border-radius: 2px;
+}
+
+/* Animated background blobs */
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(20px, -30px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  75% {
+    transform: translate(30px, 10px) scale(1.05);
+  }
+}
+
+@keyframes blob-reverse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(-30px, 20px) scale(0.9);
+  }
+  50% {
+    transform: translate(20px, -20px) scale(1.1);
+  }
+  75% {
+    transform: translate(-10px, 30px) scale(0.95);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-blob {
+  animation: blob 8s infinite ease-in-out;
+}
+
+.animate-blob-reverse {
+  animation: blob-reverse 10s infinite ease-in-out;
+}
+
+.animate-float {
+  animation: float 6s infinite ease-in-out;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: 0 0 60px rgba(244, 63, 94, 0.3);
+}
+
+/* Section snap (optional - for full page sections) */
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { FaGithub, FaLinkedin, FaPaperPlane, FaEnvelope } from "react-icons/fa";
 import SectionHeading from "./ui/SectionHeading";
-import { socialLinks } from "@/data/social";
+import { socialLinks, email } from "@/data/social";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -63,9 +63,12 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 px-4 scroll-mt-16 bg-[#1a1a1d]/50"
+      className="min-h-screen py-24 px-4 scroll-mt-16 relative"
     >
-      <div className="max-w-6xl mx-auto">
+      {/* Background accent */}
+      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-rose-500/5 rounded-full blur-3xl" />
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading title="Contact" />
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -86,7 +89,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-[#1a1a1d] border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors"
                   placeholder="Your name"
                 />
               </div>
@@ -105,7 +108,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-[#1a1a1d] border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors"
                   placeholder="your@email.com"
                 />
               </div>
@@ -124,7 +127,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-[#1a1a1d] border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors"
                   placeholder="What's this about?"
                 />
               </div>
@@ -143,7 +146,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 rounded-lg bg-[#1a1a1d] border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors resize-none"
                   placeholder="Your message..."
                 />
               </div>
@@ -151,7 +154,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-lg bg-rose-500 text-white font-semibold hover:bg-rose-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-rose-500 text-white font-semibold hover:bg-rose-600 hover:shadow-lg hover:shadow-rose-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 {isSubmitting ? (
                   <>
@@ -167,12 +170,12 @@ export default function Contact() {
               </button>
 
               {submitStatus === "success" && (
-                <p className="text-green-400 text-center">
+                <p className="text-green-400 text-center text-sm">
                   Message sent successfully! I&apos;ll get back to you soon.
                 </p>
               )}
               {submitStatus === "error" && (
-                <p className="text-red-400 text-center">
+                <p className="text-red-400 text-center text-sm">
                   Something went wrong. Please try again.
                 </p>
               )}
@@ -180,37 +183,39 @@ export default function Contact() {
           </div>
 
           {/* Get in Touch Sidebar */}
-          <div className="flex flex-col justify-center">
-            <h3 className="text-2xl font-bold text-white mb-4">Get in Touch</h3>
+          <div className="flex flex-col justify-center lg:pl-8">
+            <h3 className="text-3xl font-bold text-white mb-6">Get in Touch</h3>
             <p className="text-gray-300 text-lg mb-6 leading-relaxed">
               I&apos;m always open to discussing new projects, creative ideas, or
               opportunities to be part of an amazing team. Feel free to reach
               out to me using the form, or through my social media channels.
             </p>
-            <p className="text-gray-400 mb-8">
+            <p className="text-gray-400 mb-8 text-lg">
               Let&apos;s create something awesome together!
             </p>
 
             {/* Social Links */}
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4 mb-8">
               {socialLinks.map((link) => (
                 <a
                   key={link.id}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#23232a] border border-white/10 text-gray-300 hover:text-rose-400 hover:border-rose-500/50 transition-all"
+                  className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-rose-400 hover:border-rose-500/50 hover:bg-rose-500/10 transition-all"
                 >
                   {getSocialIcon(link.icon)}
-                  <span>{link.name}</span>
+                  <span className="font-medium">{link.name}</span>
                 </a>
               ))}
             </div>
 
             {/* Email */}
-            <div className="mt-6 flex items-center gap-2 text-gray-400">
-              <FaEnvelope className="w-4 h-4 text-rose-400" />
-              <span>contact@sagarsahu.com</span>
+            <div className="flex items-center gap-3 text-gray-400">
+              <div className="p-3 rounded-xl bg-rose-500/10">
+                <FaEnvelope className="w-5 h-5 text-rose-400" />
+              </div>
+              <span className="text-lg">{email}</span>
             </div>
           </div>
         </div>
