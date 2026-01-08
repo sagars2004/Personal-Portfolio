@@ -25,7 +25,7 @@ export const education: Education = {
   endDate: "December 2025",
   logo: "/logo.png",
   coursework: [
-    "Intro to AI",
+    "Artificial Intelligence",
     "Software Design & Documentation",
     "Database Systems",
     "Principles of Software",
@@ -39,6 +39,8 @@ export const education: Education = {
     "Microeconomic Theory",
     "Differential Equations",
     "Multivariable Calculus and Matrix Algebra",
+    "Intro to Logic-Based AI",
+    
   ],
   extracurriculars: [
     "Rensselaer Center for Open Source",

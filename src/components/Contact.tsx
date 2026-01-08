@@ -70,7 +70,7 @@ export default function Contact() {
       <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] bg-pink-500/10 rounded-full blur-[70px] animate-blob-pulse animation-delay-4000" />
       
       <div className="max-w-6xl mx-auto relative z-10">
-        <SectionHeading title="Contact" />
+        <SectionHeading title="Contact Me" />
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}

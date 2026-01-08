@@ -1,87 +1,111 @@
 "use client";
 
+import { useState } from "react";
 import { FaBriefcase, FaFlask, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import SectionHeading from "./ui/SectionHeading";
 import { experiences } from "@/data/experience";
 
 export default function Experience() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeExp = experiences[activeIndex];
+
   return (
     <section id="experience" className="min-h-screen py-24 px-4 scroll-mt-16 relative overflow-hidden">
       {/* Background accents - animated */}
       <div className="absolute top-[20%] left-[5%] w-[400px] h-[400px] bg-rose-500/10 rounded-full blur-[80px] animate-blob animation-delay-2000" />
       <div className="absolute bottom-[10%] right-[10%] w-[350px] h-[350px] bg-pink-500/10 rounded-full blur-[70px] animate-blob-pulse animation-delay-4000" />
       
-      <div className="max-w-4xl mx-auto relative z-10">
-        <SectionHeading title="Experience" />
+      <div className="max-w-6xl mx-auto relative z-10">
+        <SectionHeading title="My Experience" />
 
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-rose-500 via-rose-500/50 to-transparent transform md:-translate-x-1/2" />
-
-          {/* Experience Cards */}
-          <div className="space-y-16">
+        <div className="flex flex-col lg:flex-row gap-6">
+          {/* Left side - Stacked role cards */}
+          <div className="lg:w-[380px] flex-shrink-0 space-y-3">
             {experiences.map((exp, index) => (
-              <div
+              <button
                 key={exp.id}
-                className={`relative flex flex-col md:flex-row gap-8 ${
-                  index % 2 === 0 ? "md:flex-row-reverse" : ""
+                onClick={() => setActiveIndex(index)}
+                className={`w-full group flex items-center gap-4 px-5 py-4 rounded-xl text-left transition-all ${
+                  activeIndex === index
+                    ? "bg-rose-500/15 border-l-4 border-rose-500"
+                    : "bg-white/5 border-l-4 border-transparent hover:bg-white/10 hover:border-gray-600"
                 }`}
               >
-                {/* Timeline Dot */}
-                <div className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-rose-500 border-4 border-[#0a0a0b] transform -translate-x-1/2 md:-translate-x-1/2 z-10 glow" />
-
-                {/* Card */}
-                <div
-                  className={`flex-1 ml-8 md:ml-0 ${
-                    index % 2 === 0 ? "md:mr-12" : "md:ml-12"
-                  }`}
-                >
-                  <div className="card p-6 group">
-                    {/* Type Badge */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className={`p-2 rounded-lg ${exp.type === "work" ? "bg-rose-500/10" : "bg-blue-500/10"}`}>
-                        {exp.type === "work" ? (
-                          <FaBriefcase className="w-4 h-4 text-rose-400" />
-                        ) : (
-                          <FaFlask className="w-4 h-4 text-blue-400" />
-                        )}
-                      </div>
-                      <span className={`text-xs uppercase tracking-wider font-semibold ${exp.type === "work" ? "text-rose-400" : "text-blue-400"}`}>
-                        {exp.type === "work" ? "Work" : "Research"}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-rose-400 transition-colors">
-                      {exp.title}
-                    </h3>
-
-                    {/* Company */}
-                    <p className="text-rose-400 font-medium mb-3">{exp.company}</p>
-
-                    {/* Meta Info */}
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-4">
-                      <span className="flex items-center gap-1">
-                        <FaMapMarkerAlt className="w-3 h-3" />
-                        {exp.location}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <FaCalendarAlt className="w-3 h-3" />
-                        {exp.startDate} - {exp.endDate}
-                      </span>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      {exp.description}
-                    </p>
-                  </div>
+                <div className={`p-2.5 rounded-lg flex-shrink-0 ${
+                  activeIndex === index 
+                    ? "bg-rose-500/20" 
+                    : "bg-white/10"
+                }`}>
+                  {exp.type === "work" ? (
+                    <FaBriefcase className={`w-4 h-4 ${activeIndex === index ? "text-rose-400" : "text-gray-400"}`} />
+                  ) : (
+                    <FaFlask className={`w-4 h-4 ${activeIndex === index ? "text-rose-400" : "text-gray-400"}`} />
+                  )}
                 </div>
-
-                {/* Spacer for alternating layout */}
-                <div className="hidden md:block flex-1" />
-              </div>
+                <div className="min-w-0 flex-1">
+                  <p className={`font-semibold text-sm ${activeIndex === index ? "text-rose-400" : "text-white"}`}>
+                    {exp.company}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-0.5">{exp.title}</p>
+                </div>
+              </button>
             ))}
+          </div>
+
+          {/* Right side - Expanded view */}
+          <div className="flex-1 card p-8 lg:p-10">
+            {/* Type badge */}
+            <div className="flex items-center gap-2 mb-4">
+              <span className={`px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full ${
+                activeExp.type === "work" 
+                  ? "bg-rose-500/10 text-rose-400 border border-rose-500/30" 
+                  : "bg-blue-500/10 text-blue-400 border border-blue-500/30"
+              }`}>
+                {activeExp.type === "work" ? "Work Experience" : "Research"}
+              </span>
+            </div>
+
+            {/* Title & Company */}
+            <h3 className="text-3xl font-bold text-white mb-2">{activeExp.title}</h3>
+            <p className="text-rose-400 font-semibold text-xl mb-6">{activeExp.company}</p>
+
+            {/* Meta info */}
+            <div className="flex flex-wrap gap-6 text-gray-400 mb-8 pb-8 border-b border-white/10">
+              <span className="flex items-center gap-2">
+                <FaMapMarkerAlt className="w-4 h-4 text-rose-400/60" />
+                {activeExp.location}
+              </span>
+              <span className="flex items-center gap-2">
+                <FaCalendarAlt className="w-4 h-4 text-rose-400/60" />
+                {activeExp.startDate} — {activeExp.endDate}
+              </span>
+            </div>
+
+            {/* Description */}
+            <p className="text-gray-300 leading-relaxed text-lg">
+              {activeExp.description}
+            </p>
+
+            {/* Navigation dots */}
+            <div className="mt-10 pt-6 border-t border-white/10 flex items-center gap-4">
+              <div className="flex gap-2">
+                {experiences.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveIndex(index)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      activeIndex === index 
+                        ? "bg-rose-500 w-8" 
+                        : "bg-gray-600 w-2 hover:bg-gray-500"
+                    }`}
+                    aria-label={`View experience ${index + 1}`}
+                  />
+                ))}
+              </div>
+              <span className="text-sm text-gray-500 ml-auto">
+                {activeIndex + 1} of {experiences.length}
+              </span>
+            </div>
           </div>
         </div>
       </div>

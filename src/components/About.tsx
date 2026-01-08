@@ -13,7 +13,7 @@ export default function About() {
       <div className="absolute bottom-[20%] left-[10%] w-[350px] h-[350px] bg-pink-500/10 rounded-full blur-[70px] animate-blob-reverse animation-delay-3000" />
       
       <div className="max-w-6xl mx-auto relative z-10">
-        <SectionHeading title="About" />
+        <SectionHeading title="About Me" />
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Bio Section */}
@@ -52,7 +52,7 @@ export default function About() {
             <div>
               <div className="flex items-center gap-2 text-gray-300 mb-4">
                 <FaBook className="w-4 h-4 text-rose-400" />
-                <span className="font-semibold">Relevant Coursework</span>
+                <span className="font-semibold">Relevant Knowledge</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {education.coursework.slice(0, 8).map((course, index) => (
@@ -80,7 +80,7 @@ export default function About() {
                   src={education.logo}
                   alt={education.school}
                   fill
-                  className="object-contain"
+                  
                 />
               </div>
               <div>
@@ -97,10 +97,10 @@ export default function About() {
             <div className="space-y-6">
               {/* Concentration & Minor */}
               <div className="flex flex-wrap gap-2">
-                <span className="px-4 py-2 text-sm rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400">
+                <span className="px-4 py-2 text-sm rounded-xl bg-white/5 border border-rose-500/30 text-gray-300">
                   {education.concentration}
                 </span>
-                <span className="px-4 py-2 text-sm rounded-xl bg-white/5 border border-white/10 text-gray-300">
+                <span className="px-4 py-2 text-sm rounded-xl bg-white/5 border border border-rose-500/30 text-gray-300">
                   Minor: {education.minor}
                 </span>
               </div>

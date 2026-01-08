@@ -116,14 +116,8 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        {/* Location Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-grey-500/10 border border-grey-500/30 text-grey-400 text-sm mb-8 animate-float">
-          <FaMapMarkerAlt className="w-4 h-4" />
-          <span>{location}</span>
-        </div>
-
         {/* Greeting with Typing Effect */}
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8">
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
           <TypingEffect
             text="Hi, I'm Sagar!"
             className="gradient-text"
@@ -131,26 +125,32 @@ export default function Hero() {
           />
         </h1>
 
+        {/* Location Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-grey-500/10 border border-grey-500/30 text-grey-400 text-sm mb-8 animate-float">
+          <FaMapMarkerAlt className="w-4 h-4" />
+          <span>{location}</span>
+        </div>
+
         {/* Headline */}
         <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-200 mb-6 max-w-3xl mx-auto font-medium">
           I build{" "}
           <span className="text-rose-400 font-semibold">
             intelligent, scalable, and impactful
           </span>{" "}
-          solutions in AI, ML, software engineering, and fintech.
+          solutions in AI, machine learning, and software engineering.
         </h2>
 
         {/* Description */}
         <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-          Undergraduate student and passionate software developer focused on
-          creating elegant solutions that deliver real-world value.
+          A rather passionate developer focused on
+          creating elegant products that deliver real-world value in the worlds of tech and finance.
         </p>
 
         {/* Life Timer */}
         {timeElapsed && (
           <div className="flex justify-center mb-10">
             <div className="px-6 py-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
-              <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">Time on Earth</p>
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">My Time on Earth</p>
               <div className="flex items-center gap-3 sm:gap-4">
                 <div className="text-center">
                   <span className="text-2xl sm:text-3xl font-bold text-white">{timeElapsed.years}</span>
@@ -218,7 +218,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-subtle-bounce">
         <span className="text-xs text-gray-500 uppercase tracking-widest">Scroll</span>
         <div className="w-6 h-10 rounded-full border-2 border-gray-600 flex items-start justify-center p-2">
           <div className="w-1 h-2 bg-rose-400 rounded-full" />

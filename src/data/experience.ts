@@ -11,21 +11,32 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    id: "carmax",
-    title: "Technology Intern",
-    company: "CarMax, Inc.",
-    location: "Richmond, VA",
-    startDate: "Jun 2025",
+    id: "fidelity",
+    title: "Full-Stack Software Engineer",
+    company: "Fidelity Investments",
+    location: "Jersey City, NJ",
+    startDate: "Jan 2026",
     endDate: "Present",
     description:
       "Spearheading configuration and implementation of an Oracle ERP supplier portal built on Java and HTML to enable streamlined vendor onboarding, automated communication, and improved procurement for third-party supplier registration.",
     type: "work",
   },
   {
+    id: "carmax",
+    title: "Software Engineer Intern",
+    company: "CarMax, Inc.",
+    location: "Richmond, VA",
+    startDate: "Jun 2025",
+    endDate: "Aug 2025",
+    description:
+      "Spearheading configuration and implementation of an Oracle ERP supplier portal built on Java and HTML to enable streamlined vendor onboarding, automated communication, and improved procurement for third-party supplier registration.",
+    type: "work",
+  },
+  {
     id: "rentpad",
-    title: "Lead AI & Applications Developer",
+    title: "Lead AI Applications Engineer",
     company: "RentPad Homes",
-    location: "Remote",
+    location: "Albany, NY",
     startDate: "Jun 2025",
     endDate: "Present",
     description:
@@ -33,18 +44,7 @@ export const experiences: Experience[] = [
     type: "work",
   },
   {
-    id: "rpi-software",
-    title: "Undergraduate Software Research Assistant",
-    company: "Rensselaer Polytechnic Institute",
-    location: "Troy, NY",
-    startDate: "Sep 2024",
-    endDate: "Jan 2025",
-    description:
-      "Designed C software to train artificial neural networks for various regression, data compression, and backpropagation tasks, supporting undergraduate course teaching for RPI's Biomedical Engineering department.",
-    type: "research",
-  },
-  {
-    id: "rpi-ml",
+    id: "rpi",
     title: "Machine Learning Research Intern",
     company: "Rensselaer Polytechnic Institute",
     location: "Troy, NY",

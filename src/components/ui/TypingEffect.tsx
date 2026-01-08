@@ -40,9 +40,7 @@ export default function TypingEffect({
     <span className={className}>
       {displayedText}
       <span
-        className={`inline-block w-0.5 h-[1em] bg-rose-500 ml-1 align-middle ${
-          isComplete ? "animate-pulse" : "animate-pulse"
-        }`}
+        className={`inline-block w-[3px] h-[1em] bg-rose-500 ml-1 align-middle rounded-sm animate-cursor-blink`}
       />
     </span>
   );

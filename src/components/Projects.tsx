@@ -15,7 +15,7 @@ export default function Projects() {
       <div className="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] bg-pink-500/10 rounded-full blur-[70px] animate-blob animation-delay-1000" />
       
       <div className="max-w-6xl mx-auto relative z-10">
-        <SectionHeading title="Projects" />
+        <SectionHeading title="Notable Projects" />
 
         {/* Featured Projects Grid */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
@@ -74,45 +74,6 @@ export default function Projects() {
             </div>
           ))}
         </div>
-
-        {/* Other Projects List */}
-        {otherProjects.length > 0 && (
-          <div>
-            <h3 className="text-lg font-semibold text-gray-300 mb-6">
-              Other Notable Projects
-            </h3>
-            <div className="space-y-3">
-              {otherProjects.map((project) => (
-                <div
-                  key={project.id}
-                  className="group flex items-center justify-between p-5 rounded-xl bg-white/5 border border-white/10 hover:border-rose-500/30 hover:bg-white/[0.07] transition-all"
-                >
-                  <div className="flex items-center gap-4">
-                    <FaArrowRight className="w-4 h-4 text-rose-400 group-hover:translate-x-1 transition-transform" />
-                    <div>
-                      <span className="text-white font-medium group-hover:text-rose-400 transition-colors">
-                        {project.title}
-                      </span>
-                      <p className="text-sm text-gray-500 mt-1">{project.description.slice(0, 80)}...</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 text-gray-400 hover:text-rose-400 transition-colors"
-                      >
-                        <FaGithub className="w-5 h-5" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
