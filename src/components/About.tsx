@@ -17,7 +17,7 @@ export default function About() {
             <div className="flex items-center gap-6">
               <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-rose-500/30 flex-shrink-0">
                 <Image
-                  src="/profile_pic.JPG"
+                  src="/profile_pic.jpeg"
                   alt="Sagar Sahu"
                   fill
                   className="object-cover"

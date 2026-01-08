@@ -15,7 +15,7 @@ export const socialLinks: SocialLink[] = [
   {
     id: "linkedin",
     name: "LinkedIn",
-    url: "https://www.linkedin.com/in/sagar-sahu-398493223/",
+    url: "https://www.linkedin.com/in/sagarsahu0301/",
     icon: "linkedin",
   },
 ];
