@@ -15,7 +15,6 @@ export const technologies: Technology[] = [
   { name: "HTML", icon: "html5", category: "language" },
   { name: "CSS", icon: "css3", category: "language" },
   { name: "PostgreSQL", icon: "postgresql", category: "language" },
-  { name: "R", icon: "r", category: "language" },
   { name: "Bash", icon: "bash", category: "language" },
 
   // Libraries & Frameworks

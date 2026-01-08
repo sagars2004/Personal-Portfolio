@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaMapMarkerAlt, FaFileAlt } from "react-icons/fa";
 import TypingEffect from "./ui/TypingEffect";
+import ParticleBackground from "./ui/ParticleBackground";
 import { socialLinks, resumeUrl, location } from "@/data/social";
 
 interface TimeElapsed {
@@ -120,7 +121,7 @@ export default function Hero() {
         <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
           <TypingEffect
             text="Hi, I'm Sagar!"
-            className="gradient-text"
+            className="text-white"
             speed={80}
           />
         </h1>

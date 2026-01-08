@@ -1,13 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { FaAward, FaCertificate, FaUsers, FaBook } from "react-icons/fa";
+import { FaAward, FaCertificate, FaUsers, FaBook, FaCode } from "react-icons/fa";
 import SectionHeading from "./ui/SectionHeading";
+import TechIcon from "./ui/TechIcon";
 import { education } from "@/data/education";
+import { technologies } from "@/data/technologies";
 
 export default function About() {
+  const languages = technologies.filter((t) => t.category === "language");
+  const libraries = technologies.filter((t) => t.category === "library");
+  const tools = technologies.filter((t) => t.category === "tool");
+
   return (
-    <section id="about" className="min-h-screen py-24 px-4 scroll-mt-16 relative overflow-hidden">
+    <section id="about" className="py-24 px-4 scroll-mt-16 relative overflow-hidden">
       {/* Background accents - animated */}
       <div className="absolute top-[10%] right-[5%] w-[400px] h-[400px] bg-rose-500/10 rounded-full blur-[80px] animate-blob-drift" />
       <div className="absolute bottom-[20%] left-[10%] w-[350px] h-[350px] bg-pink-500/10 rounded-full blur-[70px] animate-blob-reverse animation-delay-3000" />
@@ -151,6 +157,52 @@ export default function About() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Technologies Section */}
+        <div className="mt-20">
+          <div className="flex items-center gap-3 mb-8">
+            <FaCode className="w-6 h-6 text-rose-400" />
+            <h3 className="text-2xl font-bold text-white">Technologies</h3>
+          </div>
+
+          <div className="space-y-10">
+            {/* Languages */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
+                Languages
+              </h4>
+              <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3">
+                {languages.map((tech) => (
+                  <TechIcon key={tech.name} icon={tech.icon} name={tech.name} />
+                ))}
+              </div>
+            </div>
+
+            {/* Libraries & Frameworks */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
+                Libraries & Frameworks
+              </h4>
+              <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3">
+                {libraries.map((tech) => (
+                  <TechIcon key={tech.name} icon={tech.icon} name={tech.name} />
+                ))}
+              </div>
+            </div>
+
+            {/* Tools */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
+                Tools & Platforms
+              </h4>
+              <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3">
+                {tools.map((tech) => (
+                  <TechIcon key={tech.name} icon={tech.icon} name={tech.name} />
+                ))}
               </div>
             </div>
           </div>

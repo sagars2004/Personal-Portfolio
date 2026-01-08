@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { FaBriefcase, FaFlask, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import SectionHeading from "./ui/SectionHeading";
 import { experiences } from "@/data/experience";
@@ -31,15 +32,24 @@ export default function Experience() {
                     : "bg-white/5 border-l-4 border-transparent hover:bg-white/10 hover:border-gray-600"
                 }`}
               >
-                <div className={`p-2.5 rounded-lg flex-shrink-0 ${
+                {/* Company Logo or Fallback Icon */}
+                <div className={`w-12 h-12 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden ${
                   activeIndex === index 
-                    ? "bg-rose-500/20" 
-                    : "bg-white/10"
+                    ? "bg-white/10" 
+                    : "bg-white/5"
                 }`}>
-                  {exp.type === "work" ? (
-                    <FaBriefcase className={`w-4 h-4 ${activeIndex === index ? "text-rose-400" : "text-gray-400"}`} />
+                  {exp.logo ? (
+                    <Image
+                      src={exp.logo}
+                      alt={`${exp.company} logo`}
+                      width={50}
+                      height={50}
+                      className="object-contain"
+                    />
+                  ) : exp.type === "work" ? (
+                    <FaBriefcase className={`w-5 h-5 ${activeIndex === index ? "text-rose-400" : "text-gray-400"}`} />
                   ) : (
-                    <FaFlask className={`w-4 h-4 ${activeIndex === index ? "text-rose-400" : "text-gray-400"}`} />
+                    <FaFlask className={`w-5 h-5 ${activeIndex === index ? "text-rose-400" : "text-gray-400"}`} />
                   )}
                 </div>
                 <div className="min-w-0 flex-1">
@@ -54,20 +64,34 @@ export default function Experience() {
 
           {/* Right side - Expanded view */}
           <div className="flex-1 card p-8 lg:p-10">
-            {/* Type badge */}
-            <div className="flex items-center gap-2 mb-4">
-              <span className={`px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full ${
-                activeExp.type === "work" 
-                  ? "bg-rose-500/10 text-rose-400 border border-rose-500/30" 
-                  : "bg-blue-500/10 text-blue-400 border border-blue-500/30"
-              }`}>
-                {activeExp.type === "work" ? "Work Experience" : "Research"}
-              </span>
+            {/* Header with logo */}
+            <div className="flex items-start gap-4 mb-6">
+              {/* Large logo */}
+              {activeExp.logo && (
+                <div className="w-16 h-16 rounded-xl bg-white/10 flex items-center justify-center overflow-hidden flex-shrink-0">
+                  <Image
+                    src={activeExp.logo}
+                    alt={`${activeExp.company} logo`}
+                    width={70}
+                    height={70}
+                    className="object-cover"
+                  />
+                </div>
+              )}
+              <div>
+                {/* Type badge */}
+                <span className={`inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full mb-2 ${
+                  activeExp.type === "work" 
+                    ? "bg-rose-500/10 text-rose-400 border border-rose-500/30" 
+                    : "bg-blue-500/10 text-blue-400 border border-blue-500/30"
+                }`}>
+                  {activeExp.type === "work" ? "Work Experience" : "Research"}
+                </span>
+                {/* Title & Company */}
+                <h3 className="text-2xl font-bold text-white">{activeExp.title}</h3>
+                <p className="text-rose-400 font-semibold text-lg">{activeExp.company}</p>
+              </div>
             </div>
-
-            {/* Title & Company */}
-            <h3 className="text-3xl font-bold text-white mb-2">{activeExp.title}</h3>
-            <p className="text-rose-400 font-semibold text-xl mb-6">{activeExp.company}</p>
 
             {/* Meta info */}
             <div className="flex flex-wrap gap-6 text-gray-400 mb-8 pb-8 border-b border-white/10">
