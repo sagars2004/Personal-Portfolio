@@ -3,25 +3,76 @@
 import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaMapMarkerAlt, FaFileAlt } from "react-icons/fa";
 import TypingEffect from "./ui/TypingEffect";
-import { socialLinks, githubUsername, resumeUrl, location } from "@/data/social";
+import { socialLinks, resumeUrl, location } from "@/data/social";
+
+interface TimeElapsed {
+  years: number;
+  months: number;
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+const BIRTH_DATE = new Date("2004-03-01T10:00:00");
+
+function calculateTimeElapsed(): TimeElapsed {
+  const now = new Date();
+  
+  let years = now.getFullYear() - BIRTH_DATE.getFullYear();
+  let months = now.getMonth() - BIRTH_DATE.getMonth();
+  let days = now.getDate() - BIRTH_DATE.getDate();
+  let hours = now.getHours() - BIRTH_DATE.getHours();
+  let minutes = now.getMinutes() - BIRTH_DATE.getMinutes();
+  let seconds = now.getSeconds() - BIRTH_DATE.getSeconds();
+
+  // Handle negative seconds
+  if (seconds < 0) {
+    seconds += 60;
+    minutes--;
+  }
+  
+  // Handle negative minutes
+  if (minutes < 0) {
+    minutes += 60;
+    hours--;
+  }
+  
+  // Handle negative hours
+  if (hours < 0) {
+    hours += 24;
+    days--;
+  }
+  
+  // Handle negative days
+  if (days < 0) {
+    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+    days += prevMonth.getDate();
+    months--;
+  }
+  
+  // Handle negative months
+  if (months < 0) {
+    months += 12;
+    years--;
+  }
+
+  return { years, months, days, hours, minutes, seconds };
+}
 
 export default function Hero() {
-  const [githubStats, setGithubStats] = useState<number | null>(null);
+  const [timeElapsed, setTimeElapsed] = useState<TimeElapsed | null>(null);
 
   useEffect(() => {
-    const fetchGithubStats = async () => {
-      try {
-        const response = await fetch(
-          `https://api.github.com/users/${githubUsername}`
-        );
-        const data = await response.json();
-        setGithubStats(data.public_repos || 0);
-      } catch (error) {
-        console.error("Failed to fetch GitHub stats:", error);
-      }
-    };
+    // Initial calculation
+    setTimeElapsed(calculateTimeElapsed());
 
-    fetchGithubStats();
+    // Update every second
+    const interval = setInterval(() => {
+      setTimeElapsed(calculateTimeElapsed());
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const getSocialIcon = (icon: string) => {
@@ -42,10 +93,12 @@ export default function Hero() {
     >
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-rose-500/20 rounded-full blur-3xl animate-blob" />
-        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-pink-500/15 rounded-full blur-3xl animate-blob-reverse animation-delay-2000" />
-        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-red-500/10 rounded-full blur-3xl animate-blob animation-delay-4000" />
+        {/* Gradient Orbs - more dynamic movement */}
+        <div className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-rose-500/25 rounded-full blur-[100px] animate-blob" />
+        <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] bg-pink-500/20 rounded-full blur-[80px] animate-blob-reverse animation-delay-2000" />
+        <div className="absolute bottom-[10%] left-[20%] w-[450px] h-[450px] bg-red-500/15 rounded-full blur-[90px] animate-blob-drift animation-delay-4000" />
+        <div className="absolute top-[50%] right-[30%] w-[350px] h-[350px] bg-rose-400/10 rounded-full blur-[70px] animate-blob-pulse animation-delay-1000" />
+        <div className="absolute bottom-[30%] right-[5%] w-[300px] h-[300px] bg-pink-400/15 rounded-full blur-[60px] animate-blob animation-delay-3000" />
         
         {/* Grid Pattern Overlay */}
         <div 
@@ -64,7 +117,7 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Location Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-400 text-sm mb-8 animate-float">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-grey-500/10 border border-grey-500/30 text-grey-400 text-sm mb-8 animate-float">
           <FaMapMarkerAlt className="w-4 h-4" />
           <span>{location}</span>
         </div>
@@ -93,13 +146,42 @@ export default function Hero() {
           creating elegant solutions that deliver real-world value.
         </p>
 
-        {/* GitHub Stats Counter */}
-        {githubStats !== null && (
+        {/* Life Timer */}
+        {timeElapsed && (
           <div className="flex justify-center mb-10">
-            <div className="flex items-center gap-3 px-5 py-3 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
-              <FaGithub className="w-6 h-6 text-gray-400" />
-              <span className="text-3xl font-bold text-white">{githubStats}</span>
-              <span className="text-gray-400 text-sm">public repos</span>
+            <div className="px-6 py-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">Time on Earth</p>
+              <div className="flex items-center gap-3 sm:gap-4">
+                <div className="text-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-white">{timeElapsed.years}</span>
+                  <p className="text-xs text-gray-500">years</p>
+                </div>
+                <span className="text-gray-600">:</span>
+                <div className="text-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-white">{timeElapsed.months}</span>
+                  <p className="text-xs text-gray-500">months</p>
+                </div>
+                <span className="text-gray-600">:</span>
+                <div className="text-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-white">{timeElapsed.days}</span>
+                  <p className="text-xs text-gray-500">days</p>
+                </div>
+                <span className="text-gray-600">:</span>
+                <div className="text-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-rose-400">{String(timeElapsed.hours).padStart(2, '0')}</span>
+                  <p className="text-xs text-gray-500">hrs</p>
+                </div>
+                <span className="text-gray-600">:</span>
+                <div className="text-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-rose-400">{String(timeElapsed.minutes).padStart(2, '0')}</span>
+                  <p className="text-xs text-gray-500">min</p>
+                </div>
+                <span className="text-gray-600">:</span>
+                <div className="text-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-rose-400">{String(timeElapsed.seconds).padStart(2, '0')}</span>
+                  <p className="text-xs text-gray-500">sec</p>
+                </div>
+              </div>
             </div>
           </div>
         )}

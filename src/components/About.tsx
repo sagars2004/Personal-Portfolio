@@ -7,9 +7,10 @@ import { education } from "@/data/education";
 
 export default function About() {
   return (
-    <section id="about" className="min-h-screen py-24 px-4 scroll-mt-16 relative">
-      {/* Background accent */}
-      <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-rose-500/5 rounded-full blur-3xl" />
+    <section id="about" className="min-h-screen py-24 px-4 scroll-mt-16 relative overflow-hidden">
+      {/* Background accents - animated */}
+      <div className="absolute top-[10%] right-[5%] w-[400px] h-[400px] bg-rose-500/10 rounded-full blur-[80px] animate-blob-drift" />
+      <div className="absolute bottom-[20%] left-[10%] w-[350px] h-[350px] bg-pink-500/10 rounded-full blur-[70px] animate-blob-reverse animation-delay-3000" />
       
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading title="About" />
@@ -79,7 +80,7 @@ export default function About() {
                   src={education.logo}
                   alt={education.school}
                   fill
-                  className="object-contain filter invert"
+                  className="object-contain"
                 />
               </div>
               <div>

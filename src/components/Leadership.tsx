@@ -6,9 +6,10 @@ import { leadership } from "@/data/leadership";
 
 export default function Leadership() {
   return (
-    <section id="leadership" className="min-h-screen py-24 px-4 scroll-mt-16 relative">
-      {/* Background accent */}
-      <div className="absolute top-1/4 right-0 w-1/3 h-1/2 bg-rose-500/5 rounded-full blur-3xl" />
+    <section id="leadership" className="min-h-screen py-24 px-4 scroll-mt-16 relative overflow-hidden">
+      {/* Background accents - animated */}
+      <div className="absolute top-[15%] right-[5%] w-[380px] h-[380px] bg-rose-500/10 rounded-full blur-[75px] animate-blob-reverse animation-delay-1000" />
+      <div className="absolute bottom-[15%] left-[15%] w-[320px] h-[320px] bg-red-500/10 rounded-full blur-[65px] animate-blob-drift animation-delay-5000" />
       
       <div className="max-w-5xl mx-auto relative z-10">
         <SectionHeading title="Leadership & Involvement" />

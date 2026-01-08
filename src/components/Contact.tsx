@@ -63,10 +63,11 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-screen py-24 px-4 scroll-mt-16 relative"
+      className="min-h-screen py-24 px-4 scroll-mt-16 relative overflow-hidden"
     >
-      {/* Background accent */}
-      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-rose-500/5 rounded-full blur-3xl" />
+      {/* Background accents - animated */}
+      <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] bg-rose-500/10 rounded-full blur-[80px] animate-blob-reverse animation-delay-2000" />
+      <div className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] bg-pink-500/10 rounded-full blur-[70px] animate-blob-pulse animation-delay-4000" />
       
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading title="Contact" />

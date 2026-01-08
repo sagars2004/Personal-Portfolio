@@ -12,10 +12,12 @@ export default function Technologies() {
   return (
     <section
       id="technologies"
-      className="min-h-screen py-24 px-4 scroll-mt-16 relative"
+      className="min-h-screen py-24 px-4 scroll-mt-16 relative overflow-hidden"
     >
-      {/* Background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rose-500/5 rounded-full blur-3xl" />
+      {/* Background accents - animated */}
+      <div className="absolute top-[30%] left-[20%] w-[450px] h-[450px] bg-rose-500/10 rounded-full blur-[90px] animate-blob animation-delay-2000" />
+      <div className="absolute bottom-[20%] right-[15%] w-[400px] h-[400px] bg-pink-500/10 rounded-full blur-[80px] animate-blob-reverse animation-delay-4000" />
+      <div className="absolute top-[10%] right-[30%] w-[300px] h-[300px] bg-red-500/8 rounded-full blur-[60px] animate-blob-pulse animation-delay-1000" />
       
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading title="Technologies" />

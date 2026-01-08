@@ -52,42 +52,51 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "glass border-b border-rose-500/10 py-3"
+          ? "glass py-3"
           : "bg-transparent py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
+      <div className="w-full px-6 lg:px-12">
+        <div className="flex items-center">
+          {/* Logo - pushed to left */}
           <button
             onClick={() => scrollToSection("home")}
-            className="text-2xl font-bold text-white hover:text-rose-400 transition-colors"
+            className="text-2xl font-bold text-white hover:text-rose-400 transition-colors flex-shrink-0"
           >
             SS<span className="text-rose-500">.</span>
           </button>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <li key={link.id}>
-                <button
-                  onClick={() => scrollToSection(link.id)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    activeSection === link.id
-                      ? "text-rose-400 bg-rose-500/10"
-                      : "text-gray-400 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  {link.label}
-                </button>
-              </li>
-            ))}
-          </ul>
+          {/* Desktop Navigation - centered and spaced out */}
+          <div className="hidden md:flex flex-1 justify-center">
+            <div className="relative">
+              <ul className="flex items-center gap-8 lg:gap-12">
+                {navLinks.map((link) => (
+                  <li key={link.id}>
+                    <button
+                      onClick={() => scrollToSection(link.id)}
+                      className={`px-3 py-2 text-sm font-medium transition-all ${
+                        activeSection === link.id
+                          ? "text-rose-400"
+                          : "text-gray-400 hover:text-white"
+                      }`}
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              {/* Accent bar under links */}
+              <div className="absolute -bottom-3 left-0 right-0 h-[2px] bg-rose-500" />
+            </div>
+          </div>
+
+          {/* Spacer to balance the logo on desktop */}
+          <div className="hidden md:block w-[52px] flex-shrink-0" />
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-white p-2 rounded-lg hover:bg-white/5 transition-colors"
+            className="md:hidden ml-auto text-white p-2 rounded-lg hover:bg-white/5 transition-colors"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
@@ -121,6 +130,8 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+        {/* Mobile accent bar */}
+        <div className="h-[2px] bg-rose-500 mx-4" />
       </div>
     </nav>
   );

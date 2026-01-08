@@ -16,14 +16,14 @@ export interface Education {
 
 export const education: Education = {
   id: "rpi",
-  degree: "Bachelor of Science (B.S.) in Computer Science",
-  concentration: "Artificial Intelligence and Data",
-  minor: "Economics of Banking & Finance",
+  degree: "B.S. in Computer Science",
+  concentration: "Concentration: AI/Machine Learning and Data Science",
+  minor: "Economics of Banking and Finance",
   school: "Rensselaer Polytechnic Institute - School of Science",
   location: "Troy, NY",
-  startDate: "Sep 2022",
-  endDate: "May 2026",
-  logo: "/RPI_logo.png",
+  startDate: "August 2022",
+  endDate: "December 2025",
+  logo: "/logo.png",
   coursework: [
     "Intro to AI",
     "Software Design & Documentation",
@@ -43,15 +43,14 @@ export const education: Education = {
   extracurriculars: [
     "Rensselaer Center for Open Source",
     "Google Developer Groups on Campus",
-    "Tau Epsilon Phi",
+    "Tau Epsilon Phi Fraternity"
   ],
   honors: [
-    "Dean's Honor List (S24, F24, S25)",
+    "Dean's Honor List (2024, 2025)",
     "RPI Leadership and Recognition Award",
   ],
   certifications: [
     "Google Cloud Data Analytics Certificate",
-    "J.P. Morgan Chase Software Engineering Job Experience",
-    "Walmart Global Tech SWE Experience",
+    "J.P. Morgan Chase Software Engineering Job Experience"
   ],
 };

@@ -24,6 +24,6 @@ export const githubUsername = "sagars2004";
 
 export const resumeUrl = "/resume.pdf"; // Add your resume PDF to the public folder
 
-export const location = "Troy, NY";
+export const location = "New York";
 
-export const email = "contact@sagarsahu.com"; // Update with your actual email
+export const email = "*************@gmail.com"; // Update with your actual email

@@ -9,9 +9,10 @@ export default function Projects() {
   const otherProjects = projects.filter((p) => !p.featured);
 
   return (
-    <section id="projects" className="min-h-screen py-24 px-4 scroll-mt-16 relative">
-      {/* Background accent */}
-      <div className="absolute top-0 left-0 w-1/3 h-1/2 bg-rose-500/5 rounded-full blur-3xl" />
+    <section id="projects" className="min-h-screen py-24 px-4 scroll-mt-16 relative overflow-hidden">
+      {/* Background accents - animated */}
+      <div className="absolute top-[10%] left-[5%] w-[400px] h-[400px] bg-rose-500/10 rounded-full blur-[80px] animate-blob-drift animation-delay-3000" />
+      <div className="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] bg-pink-500/10 rounded-full blur-[70px] animate-blob animation-delay-1000" />
       
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading title="Projects" />
