@@ -2,8 +2,8 @@
 
 :root {
   --background: #0a0a0b;
-  --background-card: #141418;
-  --background-card-hover: #1a1a1f;
+  --background-card: rgba(20, 20, 24, 0.5);
+  --background-card-hover: rgba(26, 26, 31, 0.6);
   --foreground: #ffffff;
   --foreground-secondary: #d1d5db;
   --foreground-muted: #9ca3af;
@@ -78,6 +78,7 @@ html {
 /* Card styles */
 .card {
   background: var(--background-card);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1rem;
   transition: all 0.3s ease;

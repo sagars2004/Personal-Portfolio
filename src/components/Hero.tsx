@@ -64,6 +64,11 @@ function calculateTimeElapsed(): TimeElapsed {
 export default function Hero() {
   const [timeElapsed, setTimeElapsed] = useState<TimeElapsed | null>(null);
 
+  // Scroll to top on page load/refresh
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     // Initial calculation
     setTimeElapsed(calculateTimeElapsed());
@@ -107,35 +112,35 @@ export default function Hero() {
 
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Multi-layered Gradient Orbs */}
+        {/* Multi-layered Gradient Orbs - Vibrant */}
         <div 
-          className="absolute top-[10%] left-[10%] w-[500px] h-[500px] rounded-full blur-[80px] animate-blob"
+          className="absolute top-[10%] left-[10%] w-[500px] h-[500px] rounded-full blur-[60px] animate-blob"
           style={{
-            background: 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(168,85,247,0.25) 35%, rgba(244,63,94,0.2) 70%, transparent 100%)'
+            background: 'radial-gradient(circle, rgba(59,130,246,0.6) 0%, rgba(168,85,247,0.45) 35%, rgba(244,63,94,0.3) 70%, transparent 100%)'
           }}
         />
         <div 
-          className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full blur-[70px] animate-blob-reverse animation-delay-2000"
+          className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full blur-[50px] animate-blob-reverse animation-delay-2000"
           style={{
-            background: 'radial-gradient(circle, rgba(236,72,153,0.35) 0%, rgba(139,92,246,0.25) 40%, rgba(59,130,246,0.15) 75%, transparent 100%)'
+            background: 'radial-gradient(circle, rgba(236,72,153,0.6) 0%, rgba(139,92,246,0.45) 40%, rgba(59,130,246,0.25) 75%, transparent 100%)'
           }}
         />
         <div 
-          className="absolute bottom-[10%] left-[20%] w-[450px] h-[450px] rounded-full blur-[75px] animate-blob-drift animation-delay-4000"
+          className="absolute bottom-[10%] left-[20%] w-[450px] h-[450px] rounded-full blur-[55px] animate-blob-drift animation-delay-4000"
           style={{
-            background: 'radial-gradient(circle, rgba(34,197,94,0.25) 0%, rgba(6,182,212,0.2) 35%, rgba(168,85,247,0.15) 70%, transparent 100%)'
+            background: 'radial-gradient(circle, rgba(34,197,94,0.55) 0%, rgba(6,182,212,0.4) 35%, rgba(168,85,247,0.25) 70%, transparent 100%)'
           }}
         />
         <div 
-          className="absolute top-[50%] right-[30%] w-[350px] h-[350px] rounded-full blur-[60px] animate-blob-pulse animation-delay-1000"
+          className="absolute top-[50%] right-[30%] w-[350px] h-[350px] rounded-full blur-[45px] animate-blob-pulse animation-delay-1000"
           style={{
-            background: 'radial-gradient(circle, rgba(251,146,60,0.3) 0%, rgba(244,63,94,0.25) 40%, rgba(236,72,153,0.15) 75%, transparent 100%)'
+            background: 'radial-gradient(circle, rgba(251,146,60,0.6) 0%, rgba(244,63,94,0.45) 40%, rgba(236,72,153,0.25) 75%, transparent 100%)'
           }}
         />
         <div 
-          className="absolute bottom-[30%] right-[5%] w-[300px] h-[300px] rounded-full blur-[55px] animate-blob animation-delay-3000"
+          className="absolute bottom-[30%] right-[5%] w-[300px] h-[300px] rounded-full blur-[40px] animate-blob animation-delay-3000"
           style={{
-            background: 'radial-gradient(circle, rgba(139,92,246,0.35) 0%, rgba(59,130,246,0.25) 35%, rgba(6,182,212,0.15) 70%, transparent 100%)'
+            background: 'radial-gradient(circle, rgba(139,92,246,0.6) 0%, rgba(59,130,246,0.45) 35%, rgba(6,182,212,0.25) 70%, transparent 100%)'
           }}
         />
         

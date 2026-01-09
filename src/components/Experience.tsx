@@ -12,21 +12,21 @@ export default function Experience() {
   const activeExp = experiences[activeIndex];
 
   return (
-    <section id="experience" className="min-h-screen py-24 px-4 scroll-mt-16 relative overflow-hidden">
+    <section id="experience" className="min-h-screen py-24 px-4 scroll-mt-1 relative overflow-hidden">
       {/* Particle Background */}
       <ParticleBackground particleCount={100} speed={0.2} maxDistance={180} />
 
       {/* Background accents - animated */}
       <div 
-        className="absolute top-[20%] left-[5%] w-[400px] h-[400px] rounded-full blur-[70px] animate-blob animation-delay-2000"
+        className="absolute top-[20%] right-[5%] w-[400px] h-[400px] rounded-full blur-[50px] animate-blob animation-delay-2000"
         style={{
-          background: 'radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(168,85,247,0.18) 35%, rgba(244,63,94,0.1) 70%, transparent 100%)'
+          background: 'radial-gradient(circle, rgba(59,130,246,0.55) 0%, rgba(168,85,247,0.4) 35%, rgba(244,63,94,0.2) 70%, transparent 100%)'
         }}
       />
       <div 
-        className="absolute bottom-[10%] right-[10%] w-[350px] h-[350px] rounded-full blur-[60px] animate-blob-pulse animation-delay-4000"
+        className="absolute bottom-[10%] right-[10%] w-[350px] h-[350px] rounded-full blur-[45px] animate-blob-pulse animation-delay-4000"
         style={{
-          background: 'radial-gradient(circle, rgba(251,146,60,0.22) 0%, rgba(236,72,153,0.18) 40%, rgba(139,92,246,0.1) 75%, transparent 100%)'
+          background: 'radial-gradient(circle, rgba(251,146,60,0.55) 0%, rgba(236,72,153,0.4) 40%, rgba(139,92,246,0.2) 75%, transparent 100%)'
         }}
       />
       
@@ -42,7 +42,7 @@ export default function Experience() {
                 onClick={() => setActiveIndex(index)}
                 className={`w-full group flex items-center gap-4 px-5 py-4 rounded-xl text-left transition-all ${
                   activeIndex === index
-                    ? "bg-rose-500/15 border-l-4 border-rose-500"
+                    ? "bg-white/15 border-l-4 border-white"
                     : "bg-white/5 border-l-4 border-transparent hover:bg-white/10 hover:border-gray-600"
                 }`}
               >

@@ -1,53 +1,57 @@
 export interface Project {
   id: string;
   title: string;
+  tagline: string;
   description: string;
   technologies: string[];
   githubUrl?: string;
   liveUrl?: string;
-  featured: boolean;
 }
 
 export const projects: Project[] = [
   {
-    id: "portfolio",
-    title: "Personal Portfolio Website",
+    id: "flowstate",
+    title: "Flowstate",
+    tagline: "Deep work productivity app",
     description:
-      "A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS featuring smooth animations and a clean design.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
-    githubUrl: "https://github.com/sagars2004/personal-portfolio",
-    featured: true,
+      "A productivity and focus application designed to help users achieve deep work states and manage their time effectively.",
+    technologies: ["React", "TypeScript", "Node.js"],
+    githubUrl: "https://github.com/sagars2004/Flowstate",
   },
   {
-    id: "ml-classifier",
-    title: "ML Stress Contour Classifier",
+    id: "rentpad",
+    title: "Rentpad Homes",
+    tagline: "Smart Property Management Platform",
     description:
-      "Machine learning algorithm using PyTorch to classify elastic stress contour images of barrier coating microstructures for materials science research.",
-    technologies: ["Python", "PyTorch", "JupyterLab", "NumPy", "Matplotlib"],
-    featured: true,
+      "An open-source playbook platform for sharing and collaborating on strategies, workflows, and best practices.",
+    technologies: ["Next.js", "TypeScript", "PostgreSQL"],
+    githubUrl: "",
   },
   {
-    id: "neural-network",
-    title: "Neural Network Training Software",
+    id: "openplaybook",
+    title: "OpenPlaybook",
+    tagline: "Collaborative strategy platform",
     description:
-      "C software designed to train artificial neural networks for regression, data compression, and backpropagation tasks.",
-    technologies: ["C", "Neural Networks", "Data Compression"],
-    featured: true,
+      "An open-source playbook platform for sharing and collaborating on strategies, workflows, and best practices.",
+    technologies: ["Next.js", "TypeScript", "PostgreSQL"],
+    githubUrl: "https://github.com/sagars2004/OpenPlaybook",
   },
   {
-    id: "financial-simulation",
-    title: "Monte Carlo Financial Simulator",
+    id: "iq",
+    title: "IQ",
+    tagline: "AI-Powered Customer Intent Engine for Prioritization",
     description:
-      "Predictive data visualization tool using Monte Carlo probability simulations to assess wealth accumulation and risk management strategies.",
-    technologies: ["Python", "Monte Carlo", "Data Visualization", "Pandas"],
-    featured: false,
+      "An intelligent question-answering system leveraging AI and natural language processing for insightful responses.",
+    technologies: ["Python", "OpenAI", "FastAPI"],
+    githubUrl: "https://github.com/sagars2004/innovation-garage-25",
   },
   {
-    id: "property-management",
-    title: "Property Management Platform",
+    id: "dinder",
+    title: "Dinder",
+    tagline: "Social Dining Companion for Group Coordination",
     description:
-      "Full-stack property management platform automating rent collection and maintenance requests for landlords and property investors.",
-    technologies: ["React", "Node.js", "MongoDB", "Express.js"],
-    featured: true,
+      "Launched a full-stack web app to aid RPI students with indecision on group dining and restaurant discovery, used Javascript and Google API services to provide intelligent preference ranking, interactive real-time websocket sessions, and personal matches.",
+    technologies: ["MongoDB", "Node.js", "Socket.io", "React", "Express.js"],
+    githubUrl: "https://github.com/sagars2004/Dinder",
   },
 ];

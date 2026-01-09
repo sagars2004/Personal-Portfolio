@@ -14,21 +14,21 @@ export default function About() {
   const tools = technologies.filter((t) => t.category === "tool");
 
   return (
-    <section id="about" className="py-24 px-4 scroll-mt-16 relative overflow-hidden">
+    <section id="about" className="py-24 px-4 scroll-mt-1 relative overflow-hidden">
       {/* Particle Background */}
       <ParticleBackground particleCount={100} speed={0.2} maxDistance={180} />
 
       {/* Background accents - animated */}
       <div 
-        className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full blur-[70px] animate-blob-drift"
+        className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full blur-[50px] animate-blob-drift"
         style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.25) 0%, rgba(59,130,246,0.2) 35%, rgba(6,182,212,0.12) 70%, transparent 100%)'
+          background: 'radial-gradient(circle, rgba(139,92,246,0.55) 0%, rgba(59,130,246,0.4) 35%, rgba(6,182,212,0.25) 70%, transparent 100%)'
         }}
       />
       <div 
-        className="absolute bottom-[20%] left-[10%] w-[350px] h-[350px] rounded-full blur-[60px] animate-blob-reverse animation-delay-3000"
+        className="absolute bottom-[20%] left-[35%] w-[350px] h-[350px] rounded-full blur-[45px] animate-blob-reverse animation-delay-3000"
         style={{
-          background: 'radial-gradient(circle, rgba(236,72,153,0.25) 0%, rgba(168,85,247,0.18) 40%, rgba(59,130,246,0.1) 75%, transparent 100%)'
+          background: 'radial-gradient(circle, rgba(236,72,153,0.55) 0%, rgba(168,85,247,0.4) 40%, rgba(59,130,246,0.2) 75%, transparent 100%)'
         }}
       />
       
@@ -39,12 +39,12 @@ export default function About() {
           {/* Bio Section */}
           <div className="space-y-8">
             <div className="flex items-center gap-6">
-              <div className="relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-rose-500/30 flex-shrink-0 glow">
+              <div className="group relative w-32 h-32 rounded-2xl overflow-hidden border-2 border-rose-500/30 flex-shrink-0 transition-all duration-300 hover:scale-105 hover:border-rose-500 hover:shadow-lg hover:shadow-rose-500/30">
                 <Image
                   src="/profile_pic.jpeg"
                   alt="Sagar Sahu"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-300 group-hover:scale-110"
                 />
               </div>
               <div>
@@ -54,9 +54,7 @@ export default function About() {
             </div>
 
             <p className="text-gray-300 text-lg leading-relaxed">
-              I&apos;m an undergraduate student at Rensselaer Polytechnic Institute
-              pursuing a B.S. in Computer Science with a concentration in AI and
-              Data. My passion lies in building impactful solutions at the
+              I&apos;m a recent college graduate. My passion lies in building impactful solutions at the
               intersection of machine learning, software engineering, and fintech.
             </p>
 

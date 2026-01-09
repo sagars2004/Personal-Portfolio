@@ -76,22 +76,22 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-screen py-24 px-4 scroll-mt-16 relative overflow-hidden"
+      className="min-h-screen py-24 px-4 scroll-mt-1 relative overflow-hidden"
     >
       {/* Particle Background */}
       <ParticleBackground particleCount={80} speed={0.15} maxDistance={180} />
 
       {/* Background accents - animated */}
       <div 
-        className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full blur-[70px] animate-blob-reverse animation-delay-2000"
+        className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full blur-[50px] animate-blob-reverse animation-delay-2000"
         style={{
-          background: 'radial-gradient(circle, rgba(236,72,153,0.25) 0%, rgba(139,92,246,0.18) 35%, rgba(59,130,246,0.1) 70%, transparent 100%)'
+          background: 'radial-gradient(circle, rgba(236,72,153,0.55) 0%, rgba(139,92,246,0.4) 35%, rgba(59,130,246,0.2) 70%, transparent 100%)'
         }}
       />
       <div 
-        className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full blur-[60px] animate-blob-pulse animation-delay-4000"
+        className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full blur-[45px] animate-blob-pulse animation-delay-4000"
         style={{
-          background: 'radial-gradient(circle, rgba(6,182,212,0.22) 0%, rgba(34,197,94,0.16) 40%, rgba(168,85,247,0.1) 75%, transparent 100%)'
+          background: 'radial-gradient(circle, rgba(6,182,212,0.5) 0%, rgba(34,197,94,0.35) 40%, rgba(168,85,247,0.2) 75%, transparent 100%)'
         }}
       />
       
@@ -100,12 +100,12 @@ export default function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="card p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="card p-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-sm font-medium text-gray-300 mb-1"
                 >
                   Name
                 </label>
@@ -116,7 +116,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors"
                   placeholder="Your name"
                 />
               </div>
@@ -124,7 +124,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-sm font-medium text-gray-300 mb-1"
                 >
                   Email
                 </label>
@@ -135,7 +135,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors"
                   placeholder="your@email.com"
                 />
               </div>
@@ -143,7 +143,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="subject"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-sm font-medium text-gray-300 mb-1"
                 >
                   Subject
                 </label>
@@ -154,7 +154,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors"
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors"
                   placeholder="What's this about?"
                 />
               </div>
@@ -162,7 +162,7 @@ export default function Contact() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-gray-300 mb-2"
+                  className="block text-sm font-medium text-gray-300 mb-1"
                 >
                   Message
                 </label>
@@ -172,8 +172,8 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors resize-none"
+                  rows={3}
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-rose-500 focus:outline-none focus:ring-1 focus:ring-rose-500 transition-colors resize-none"
                   placeholder="Your message..."
                 />
               </div>
@@ -181,7 +181,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-rose-500 text-white font-semibold hover:bg-rose-600 hover:shadow-lg hover:shadow-rose-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-rose-500 text-white font-semibold hover:bg-rose-600 hover:shadow-lg hover:shadow-rose-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 {isSubmitting ? (
                   <>
