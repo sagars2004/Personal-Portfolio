@@ -47,9 +47,9 @@ export default function Footer() {
 
         {/* Attribution */}
         <div className="flex-1 flex items-center justify-center gap-1 text-sm text-gray-600">
-          <span>Made with</span>
+          <span>Made with </span>
           <FaHeart className="w-4 h-4 text-rose-500" />
-          <span>by Sagar Sahu</span>
+          <span> by Sagar Sahu</span>
           <span className="mx-2 text-gray-700">|</span>
           <span>© {new Date().getFullYear()} All Rights Reserved.</span>
         </div>

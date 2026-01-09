@@ -67,7 +67,7 @@ export const experiences: Experience[] = [
     startDate: "Jun 2023",
     endDate: "Nov 2024",
     description:
-      "Leveraged Monte Carlo probability simulations in Microsoft Dynamics and curated Power BI dashboards to manage growth-oriented business plans for 200+ prospects, enabled client retention by 300% through data-driven insights in the wealth accumulation and risk management space.",
+      "Leveraged Monte Carlo probability simulations in Microsoft Dynamics and curated Power BI dashboards to manage growth-oriented business plans for 200+ prospects, enabled client retention by 300% through data-driven insights in the wealth accumulation, risk management, and retirement planning spaces.",
     type: "work",
     logo: "/logos/northwestern.png",
   },

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FaAward, FaCertificate, FaUsers, FaBook, FaCode } from "react-icons/fa";
 import SectionHeading from "./ui/SectionHeading";
 import TechIcon from "./ui/TechIcon";
+import ParticleBackground from "./ui/ParticleBackground";
 import { education } from "@/data/education";
 import { technologies } from "@/data/technologies";
 
@@ -14,9 +15,22 @@ export default function About() {
 
   return (
     <section id="about" className="py-24 px-4 scroll-mt-16 relative overflow-hidden">
+      {/* Particle Background */}
+      <ParticleBackground particleCount={100} speed={0.2} maxDistance={180} />
+
       {/* Background accents - animated */}
-      <div className="absolute top-[10%] right-[5%] w-[400px] h-[400px] bg-rose-500/10 rounded-full blur-[80px] animate-blob-drift" />
-      <div className="absolute bottom-[20%] left-[10%] w-[350px] h-[350px] bg-pink-500/10 rounded-full blur-[70px] animate-blob-reverse animation-delay-3000" />
+      <div 
+        className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full blur-[70px] animate-blob-drift"
+        style={{
+          background: 'radial-gradient(circle, rgba(139,92,246,0.25) 0%, rgba(59,130,246,0.2) 35%, rgba(6,182,212,0.12) 70%, transparent 100%)'
+        }}
+      />
+      <div 
+        className="absolute bottom-[20%] left-[10%] w-[350px] h-[350px] rounded-full blur-[60px] animate-blob-reverse animation-delay-3000"
+        style={{
+          background: 'radial-gradient(circle, rgba(236,72,153,0.25) 0%, rgba(168,85,247,0.18) 40%, rgba(59,130,246,0.1) 75%, transparent 100%)'
+        }}
+      />
       
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading title="About Me" />
@@ -81,12 +95,13 @@ export default function About() {
           {/* Education Card */}
           <div className="card p-8">
             <div className="flex items-center gap-4 mb-8">
-              <div className="relative w-16 h-16 flex-shrink-0 bg-white/10 rounded-xl p-2">
+              <div className="w-16 h-14 rounded-xl bg-white/10 flex items-center justify-center overflow-hidden flex-shrink-0">
                 <Image
                   src={education.logo}
                   alt={education.school}
-                  fill
-                  
+                  width={80}
+                  height={80}
+                  className="object-cover"
                 />
               </div>
               <div>

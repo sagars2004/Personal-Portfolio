@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaMapMarkerAlt, FaFileAlt } from "react-icons/fa";
 import TypingEffect from "./ui/TypingEffect";
 import ParticleBackground from "./ui/ParticleBackground";
-import { socialLinks, resumeUrl, location } from "@/data/social";
+import { socialLinks, location } from "@/data/social";
 
 interface TimeElapsed {
   years: number;
@@ -76,6 +76,16 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleResumeClick = () => {
+    // Scroll to contact section
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+    // Dispatch custom event for Contact to show toast
+    window.dispatchEvent(new CustomEvent("showResumeToast"));
+  };
+
   const getSocialIcon = (icon: string) => {
     switch (icon) {
       case "github":
@@ -92,14 +102,42 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden"
     >
+      {/* Particle Background */}
+      <ParticleBackground particleCount={120} speed={0.25} maxDistance={200} />
+
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient Orbs - more dynamic movement */}
-        <div className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-rose-500/25 rounded-full blur-[100px] animate-blob" />
-        <div className="absolute top-[20%] right-[10%] w-[400px] h-[400px] bg-pink-500/20 rounded-full blur-[80px] animate-blob-reverse animation-delay-2000" />
-        <div className="absolute bottom-[10%] left-[20%] w-[450px] h-[450px] bg-red-500/15 rounded-full blur-[90px] animate-blob-drift animation-delay-4000" />
-        <div className="absolute top-[50%] right-[30%] w-[350px] h-[350px] bg-rose-400/10 rounded-full blur-[70px] animate-blob-pulse animation-delay-1000" />
-        <div className="absolute bottom-[30%] right-[5%] w-[300px] h-[300px] bg-pink-400/15 rounded-full blur-[60px] animate-blob animation-delay-3000" />
+        {/* Multi-layered Gradient Orbs */}
+        <div 
+          className="absolute top-[10%] left-[10%] w-[500px] h-[500px] rounded-full blur-[80px] animate-blob"
+          style={{
+            background: 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(168,85,247,0.25) 35%, rgba(244,63,94,0.2) 70%, transparent 100%)'
+          }}
+        />
+        <div 
+          className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full blur-[70px] animate-blob-reverse animation-delay-2000"
+          style={{
+            background: 'radial-gradient(circle, rgba(236,72,153,0.35) 0%, rgba(139,92,246,0.25) 40%, rgba(59,130,246,0.15) 75%, transparent 100%)'
+          }}
+        />
+        <div 
+          className="absolute bottom-[10%] left-[20%] w-[450px] h-[450px] rounded-full blur-[75px] animate-blob-drift animation-delay-4000"
+          style={{
+            background: 'radial-gradient(circle, rgba(34,197,94,0.25) 0%, rgba(6,182,212,0.2) 35%, rgba(168,85,247,0.15) 70%, transparent 100%)'
+          }}
+        />
+        <div 
+          className="absolute top-[50%] right-[30%] w-[350px] h-[350px] rounded-full blur-[60px] animate-blob-pulse animation-delay-1000"
+          style={{
+            background: 'radial-gradient(circle, rgba(251,146,60,0.3) 0%, rgba(244,63,94,0.25) 40%, rgba(236,72,153,0.15) 75%, transparent 100%)'
+          }}
+        />
+        <div 
+          className="absolute bottom-[30%] right-[5%] w-[300px] h-[300px] rounded-full blur-[55px] animate-blob animation-delay-3000"
+          style={{
+            background: 'radial-gradient(circle, rgba(139,92,246,0.35) 0%, rgba(59,130,246,0.25) 35%, rgba(6,182,212,0.15) 70%, transparent 100%)'
+          }}
+        />
         
         {/* Grid Pattern Overlay */}
         <div 
@@ -206,15 +244,13 @@ export default function Hero() {
           </div>
 
           {/* Resume Button */}
-          <a
-            href={resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={handleResumeClick}
             className="btn-accent flex items-center gap-2"
           >
             <FaFileAlt className="w-4 h-4" />
             <span>Resume</span>
-          </a>
+          </button>
         </div>
       </div>
 

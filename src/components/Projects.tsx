@@ -1,7 +1,8 @@
 "use client";
 
-import { FaGithub, FaExternalLinkAlt, FaArrowRight } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import SectionHeading from "./ui/SectionHeading";
+import ParticleBackground from "./ui/ParticleBackground";
 import { projects } from "@/data/projects";
 
 export default function Projects() {
@@ -10,9 +11,22 @@ export default function Projects() {
 
   return (
     <section id="projects" className="min-h-screen py-24 px-4 scroll-mt-16 relative overflow-hidden">
+      {/* Particle Background */}
+      <ParticleBackground particleCount={90} speed={0.18} maxDistance={180} />
+
       {/* Background accents - animated */}
-      <div className="absolute top-[10%] left-[5%] w-[400px] h-[400px] bg-rose-500/10 rounded-full blur-[80px] animate-blob-drift animation-delay-3000" />
-      <div className="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] bg-pink-500/10 rounded-full blur-[70px] animate-blob animation-delay-1000" />
+      <div 
+        className="absolute top-[10%] left-[5%] w-[400px] h-[400px] rounded-full blur-[70px] animate-blob-drift animation-delay-3000"
+        style={{
+          background: 'radial-gradient(circle, rgba(34,197,94,0.2) 0%, rgba(6,182,212,0.15) 35%, rgba(59,130,246,0.1) 70%, transparent 100%)'
+        }}
+      />
+      <div 
+        className="absolute bottom-[20%] right-[10%] w-[350px] h-[350px] rounded-full blur-[60px] animate-blob animation-delay-1000"
+        style={{
+          background: 'radial-gradient(circle, rgba(168,85,247,0.25) 0%, rgba(236,72,153,0.18) 40%, rgba(244,63,94,0.1) 75%, transparent 100%)'
+        }}
+      />
       
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading title="Notable Projects" />
