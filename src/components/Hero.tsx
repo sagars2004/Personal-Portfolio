@@ -112,35 +112,35 @@ export default function Hero() {
 
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Multi-layered Gradient Orbs - Vibrant with sharp edges */}
+        {/* Multi-layered Gradient Orbs - Vibrant and sharp */}
         <div 
-          className="absolute top-[10%] left-[10%] w-[500px] h-[500px] rounded-full blur-[40px] animate-blob"
+          className="absolute top-[10%] left-[10%] w-[500px] h-[500px] rounded-full blur-[20px] animate-blob"
           style={{
-            background: 'radial-gradient(circle, rgba(59,130,246,0.6) 0%, rgba(168,85,247,0.45) 25%, rgba(244,63,94,0.2) 45%, transparent 60%)'
+            background: 'radial-gradient(circle, rgba(59,130,246,0.75) 0%, rgba(168,85,247,0.55) 30%, rgba(244,63,94,0.25) 55%, transparent 70%)'
           }}
         />
         <div 
-          className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full blur-[35px] animate-blob-reverse animation-delay-2000"
+          className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full blur-[18px] animate-blob-reverse animation-delay-2000"
           style={{
-            background: 'radial-gradient(circle, rgba(236,72,153,0.6) 0%, rgba(139,92,246,0.45) 25%, rgba(59,130,246,0.15) 50%, transparent 65%)'
+            background: 'radial-gradient(circle, rgba(236,72,153,0.75) 0%, rgba(139,92,246,0.55) 30%, rgba(59,130,246,0.2) 55%, transparent 70%)'
           }}
         />
         <div 
-          className="absolute bottom-[10%] left-[20%] w-[450px] h-[450px] rounded-full blur-[38px] animate-blob-drift animation-delay-4000"
+          className="absolute bottom-[10%] left-[20%] w-[450px] h-[450px] rounded-full blur-[20px] animate-blob-drift animation-delay-4000"
           style={{
-            background: 'radial-gradient(circle, rgba(34,197,94,0.55) 0%, rgba(6,182,212,0.4) 25%, rgba(168,85,247,0.15) 45%, transparent 60%)'
+            background: 'radial-gradient(circle, rgba(34,197,94,0.7) 0%, rgba(6,182,212,0.5) 30%, rgba(168,85,247,0.2) 55%, transparent 70%)'
           }}
         />
         <div 
-          className="absolute top-[50%] right-[30%] w-[350px] h-[350px] rounded-full blur-[32px] animate-blob-pulse animation-delay-1000"
+          className="absolute top-[50%] right-[30%] w-[350px] h-[350px] rounded-full blur-[16px] animate-blob-pulse animation-delay-1000"
           style={{
-            background: 'radial-gradient(circle, rgba(251,146,60,0.6) 0%, rgba(244,63,94,0.45) 25%, rgba(236,72,153,0.15) 50%, transparent 65%)'
+            background: 'radial-gradient(circle, rgba(251,146,60,0.75) 0%, rgba(244,63,94,0.55) 30%, rgba(236,72,153,0.2) 55%, transparent 70%)'
           }}
         />
         <div 
-          className="absolute bottom-[30%] right-[5%] w-[300px] h-[300px] rounded-full blur-[28px] animate-blob animation-delay-3000"
+          className="absolute bottom-[30%] right-[5%] w-[300px] h-[300px] rounded-full blur-[14px] animate-blob animation-delay-3000"
           style={{
-            background: 'radial-gradient(circle, rgba(139,92,246,0.6) 0%, rgba(59,130,246,0.45) 25%, rgba(6,182,212,0.15) 45%, transparent 60%)'
+            background: 'radial-gradient(circle, rgba(139,92,246,0.75) 0%, rgba(59,130,246,0.55) 30%, rgba(6,182,212,0.2) 55%, transparent 70%)'
           }}
         />
         
@@ -194,7 +194,7 @@ export default function Hero() {
         {timeElapsed && (
           <div className="flex justify-center mb-10">
             <div className="px-6 py-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
-              <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">My Time on Earth</p>
+              <p className="text-xs text-gray-300 uppercase tracking-wider mb-3">My Time on Earth</p>
               <div className="flex items-center gap-3 sm:gap-4">
                 <div className="text-center">
                   <span className="text-2xl sm:text-3xl font-bold text-white">{timeElapsed.years}</span>

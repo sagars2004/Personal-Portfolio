@@ -83,15 +83,15 @@ export default function Contact() {
 
       {/* Background accents - animated */}
       <div 
-        className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full blur-[35px] animate-blob-reverse animation-delay-2000"
+        className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full blur-[18px] animate-blob-reverse animation-delay-2000"
         style={{
-          background: 'radial-gradient(circle, rgba(236,72,153,0.55) 0%, rgba(139,92,246,0.4) 25%, rgba(59,130,246,0.12) 45%, transparent 60%)'
+          background: 'radial-gradient(circle, rgba(236,72,153,0.7) 0%, rgba(139,92,246,0.5) 30%, rgba(59,130,246,0.18) 55%, transparent 70%)'
         }}
       />
       <div 
-        className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full blur-[32px] animate-blob-pulse animation-delay-4000"
+        className="absolute bottom-[10%] left-[5%] w-[350px] h-[350px] rounded-full blur-[16px] animate-blob-pulse animation-delay-4000"
         style={{
-          background: 'radial-gradient(circle, rgba(6,182,212,0.5) 0%, rgba(34,197,94,0.35) 25%, rgba(168,85,247,0.12) 50%, transparent 65%)'
+          background: 'radial-gradient(circle, rgba(6,182,212,0.65) 0%, rgba(34,197,94,0.45) 30%, rgba(168,85,247,0.18) 55%, transparent 70%)'
         }}
       />
       
@@ -219,7 +219,7 @@ export default function Contact() {
                   : "opacity-0 -translate-y-2 pointer-events-none h-0 mb-0"
               }`}
             >
-              <div className="flex items-center gap-3 px-5 py-4 bg-rose-500/10 border border-rose-500/30 rounded-xl">
+              <div className="flex items-center gap-3 px-5 py-4 bg-rose-950/80 border border-rose-500/50 rounded-xl backdrop-blur-sm">
                 <FaFileAlt className="w-5 h-5 text-rose-400 flex-shrink-0" />
                 <p className="text-gray-200 text-sm flex-1">
                   Interested in my resume? Leave a note below!

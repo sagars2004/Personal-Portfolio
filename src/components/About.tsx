@@ -20,15 +20,15 @@ export default function About() {
 
       {/* Background accents - animated */}
       <div 
-        className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full blur-[35px] animate-blob-drift"
+        className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full blur-[18px] animate-blob-drift"
         style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.55) 0%, rgba(59,130,246,0.4) 25%, rgba(6,182,212,0.15) 45%, transparent 60%)'
+          background: 'radial-gradient(circle, rgba(139,92,246,0.7) 0%, rgba(59,130,246,0.5) 30%, rgba(6,182,212,0.2) 55%, transparent 70%)'
         }}
       />
       <div 
-        className="absolute bottom-[20%] left-[35%] w-[350px] h-[350px] rounded-full blur-[32px] animate-blob-reverse animation-delay-3000"
+        className="absolute bottom-[20%] left-[35%] w-[350px] h-[350px] rounded-full blur-[16px] animate-blob-reverse animation-delay-3000"
         style={{
-          background: 'radial-gradient(circle, rgba(236,72,153,0.55) 0%, rgba(168,85,247,0.4) 25%, rgba(59,130,246,0.12) 50%, transparent 65%)'
+          background: 'radial-gradient(circle, rgba(236,72,153,0.7) 0%, rgba(168,85,247,0.5) 30%, rgba(59,130,246,0.18) 55%, transparent 70%)'
         }}
       />
       

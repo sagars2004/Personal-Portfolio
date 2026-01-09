@@ -31,7 +31,7 @@ interface ParticleBackgroundProps {
 }
 
 export default function ParticleBackground({
-  starCount = 100,
+  starCount = 120,
   starColor = "rgba(255, 255, 255, 0.8)",
   shootingStarColor = "rgba(255, 255, 255, 0.9)",
   speed = 0.10,
@@ -59,8 +59,8 @@ export default function ParticleBackground({
         starsRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5,
-          opacity: Math.random() * 0.5 + 0.3,
+          radius: Math.random() * 2 + 0.8,
+          opacity: Math.random() * 0.4 + 0.6,
           twinkleSpeed: Math.random() * 0.02 + 0.01,
           twinklePhase: Math.random() * Math.PI * 2,
           vx: (Math.random() - 0.5) * speed,
@@ -113,27 +113,14 @@ export default function ParticleBackground({
       // Draw floating stars
       for (const star of stars) {
         // Twinkle effect
-        const twinkle = Math.sin(star.twinklePhase) * 0.3 + 0.7;
+        const twinkle = Math.sin(star.twinklePhase) * 0.2 + 0.8;
         star.twinklePhase += star.twinkleSpeed;
 
+        // Draw crisp, bright star
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = starColor.replace("0.8", String(star.opacity * twinkle));
+        ctx.fillStyle = starColor.replace("0.8", String(Math.min(star.opacity * twinkle, 1)));
         ctx.fill();
-
-        // Add subtle glow for larger stars
-        if (star.radius > 1) {
-          ctx.beginPath();
-          ctx.arc(star.x, star.y, star.radius * 2, 0, Math.PI * 2);
-          const gradient = ctx.createRadialGradient(
-            star.x, star.y, 0,
-            star.x, star.y, star.radius * 2
-          );
-          gradient.addColorStop(0, starColor.replace("0.8", String(star.opacity * twinkle * 0.3)));
-          gradient.addColorStop(1, "transparent");
-          ctx.fillStyle = gradient;
-          ctx.fill();
-        }
 
         // Update position (gentle floating)
         star.x += star.vx;
@@ -228,7 +215,7 @@ export default function ParticleBackground({
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: 0.7 }}
+      style={{ opacity: 1 }}
     />
   );
 }
