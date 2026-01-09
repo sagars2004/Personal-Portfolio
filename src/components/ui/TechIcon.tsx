@@ -86,8 +86,8 @@ export default function TechIcon({ icon, name, className = "" }: TechIconProps) 
     <div
       className={`group flex flex-col items-center justify-center w-20 h-24 ${className}`}
     >
-      <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-rose-500/30 group-hover:bg-rose-500/5 group-hover:-translate-y-1 transition-all duration-300">
-        <IconComponent className="w-7 h-7 text-gray-400 group-hover:text-rose-400 transition-colors" />
+      <div className="w-20 h-25 rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-rose-500/30 group-hover:bg-rose-500/5 group-hover:-translate-y-1 transition-all duration-300">
+        <IconComponent className="w-10 h-10 text-gray-400 group-hover:text-rose-400 transition-colors" />
       </div>
       <span className="mt-2 text-xs text-gray-400 group-hover:text-gray-300 text-center transition-colors">{name}</span>
     </div>

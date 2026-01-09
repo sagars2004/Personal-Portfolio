@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FaBriefcase, FaFlask, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import SectionHeading from "./ui/SectionHeading";
@@ -9,7 +9,22 @@ import { experiences } from "@/data/experience";
 
 export default function Experience() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeExp = experiences[activeIndex];
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const activeExp = experiences[displayIndex];
+
+  // Handle card transition animation
+  const handleCardChange = (newIndex: number) => {
+    if (newIndex === activeIndex || isAnimating) return;
+    setIsAnimating(true);
+    setActiveIndex(newIndex);
+    
+    // After fade out, update content and fade in
+    setTimeout(() => {
+      setDisplayIndex(newIndex);
+      setIsAnimating(false);
+    }, 200);
+  };
 
   return (
     <section id="experience" className="min-h-screen py-24 px-4 scroll-mt-1 relative overflow-hidden">
@@ -39,15 +54,15 @@ export default function Experience() {
             {experiences.map((exp, index) => (
               <button
                 key={exp.id}
-                onClick={() => setActiveIndex(index)}
-                className={`w-full group flex items-center gap-4 px-5 py-4 rounded-xl text-left transition-all ${
+                onClick={() => handleCardChange(index)}
+                className={`w-full group flex items-center gap-4 px-5 py-4 rounded-xl text-left transition-all duration-300 ${
                   activeIndex === index
-                    ? "bg-white/15 border-l-4 border-white"
+                    ? "bg-white/15 border-l-4 border-white shadow-lg shadow-white/5"
                     : "bg-white/5 border-l-4 border-transparent hover:bg-white/10 hover:border-gray-600"
                 }`}
               >
                 {/* Company Logo or Fallback Icon */}
-                <div className={`w-12 h-12 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden ${
+                <div className={`w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden ${
                   activeIndex === index 
                     ? "bg-white/10" 
                     : "bg-white/5"
@@ -56,8 +71,8 @@ export default function Experience() {
                     <Image
                       src={exp.logo}
                       alt={`${exp.company} logo`}
-                      width={50}
-                      height={50}
+                      width={42}
+                      height={42}
                       className="object-contain"
                     />
                   ) : exp.type === "work" ? (
@@ -67,82 +82,97 @@ export default function Experience() {
                   )}
                 </div>
                 <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold text-gray-500 mt-0.5">{exp.title}</p>
                   <p className={`font-semibold text-sm ${activeIndex === index ? "text-rose-400" : "text-white"}`}>
                     {exp.company}
                   </p>
-                  <p className="text-xs text-gray-500 mt-0.5">{exp.title}</p>
                 </div>
               </button>
             ))}
           </div>
 
           {/* Right side - Expanded view */}
-          <div className="flex-1 card p-8 lg:p-10">
-            {/* Header with logo */}
-            <div className="flex items-start gap-4 mb-6">
-              {/* Large logo */}
-              {activeExp.logo && (
-                <div className="w-16 h-16 rounded-xl bg-white/10 flex items-center justify-center overflow-hidden flex-shrink-0">
-                  <Image
-                    src={activeExp.logo}
-                    alt={`${activeExp.company} logo`}
-                    width={70}
-                    height={70}
-                    className="object-cover"
-                  />
-                </div>
-              )}
+          <div className="flex-1 card p-8 lg:p-10 relative overflow-hidden h-[520px]">
+            {/* Animated gradient border */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-rose-500/20 via-transparent to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            
+            {/* Content wrapper with fade animation */}
+            <div 
+              className={`h-full flex flex-col justify-between transition-all duration-300 ${
+                isAnimating 
+                  ? "opacity-0 translate-y-4" 
+                  : "opacity-100 translate-y-0"
+              }`}
+            >
+              {/* Top content section */}
               <div>
-                {/* Type badge */}
-                <span className={`inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full mb-2 ${
-                  activeExp.type === "work" 
-                    ? "bg-rose-500/10 text-rose-400 border border-rose-500/30" 
-                    : "bg-blue-500/10 text-blue-400 border border-blue-500/30"
-                }`}>
-                  {activeExp.type === "work" ? "Work Experience" : "Research"}
+                {/* Header with logo */}
+                <div className="flex items-start gap-4 mb-6">
+                {/* Large logo with pulse effect */}
+                {activeExp.logo && (
+                  <div className="w-14 h-14 rounded-xl bg-white/10 flex items-center justify-center overflow-hidden flex-shrink-0 transition-transform duration-300 hover:scale-105">
+                    <Image
+                      src={activeExp.logo}
+                      alt={`${activeExp.company} logo`}
+                      width={58}
+                      height={58}
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                  <div>
+                    {/* Type badge with glow */}
+                    <span className={`inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full mb-2 transition-all duration-300 ${
+                      activeExp.type === "work" 
+                        ? "bg-rose-500/10 text-rose-400 border border-rose-500/30 shadow-sm shadow-rose-500/20" 
+                        : "bg-blue-500/10 text-blue-400 border border-blue-500/30 shadow-sm shadow-blue-500/20"
+                    }`}>
+                      {activeExp.type === "work" ? "Work Experience" : "Research"}
+                    </span>
+                    {/* Title & Company */}
+                    <h3 className="text-2xl font-bold text-white">{activeExp.title}</h3>
+                    <p className="text-rose-400 font-semibold text-lg">{activeExp.company}</p>
+                  </div>
+                </div>
+
+                {/* Meta info with hover effects */}
+                <div className="flex flex-wrap gap-6 text-gray-400 mb-6 pb-6 border-b border-white/10">
+                  <span className="flex items-center gap-2 transition-colors duration-200 hover:text-gray-300">
+                    <FaMapMarkerAlt className="w-4 h-4 text-rose-400/60" />
+                    {activeExp.location}
+                  </span>
+                  <span className="flex items-center gap-2 transition-colors duration-200 hover:text-gray-300">
+                    <FaCalendarAlt className="w-4 h-4 text-rose-400/60" />
+                    {activeExp.startDate} — {activeExp.endDate}
+                  </span>
+                </div>
+
+                {/* Description */}
+                <p className="text-gray-300 leading-relaxed text-lg">
+                  {activeExp.description}
+                </p>
+              </div>
+
+              {/* Navigation dots with smooth transitions */}
+              <div className="pt-6 flex items-center gap-4">
+                <div className="flex gap-2">
+                  {experiences.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleCardChange(index)}
+                      className={`h-2 rounded-full transition-all duration-500 ease-out ${
+                        activeIndex === index 
+                          ? "bg-rose-500 w-8 shadow-md shadow-rose-500/40" 
+                          : "bg-gray-600 w-2 hover:bg-gray-500 hover:w-3"
+                      }`}
+                      aria-label={`View experience ${index + 1}`}
+                    />
+                  ))}
+                </div>
+                <span className="text-sm text-gray-500 ml-auto">
+                  {activeIndex + 1} of {experiences.length}
                 </span>
-                {/* Title & Company */}
-                <h3 className="text-2xl font-bold text-white">{activeExp.title}</h3>
-                <p className="text-rose-400 font-semibold text-lg">{activeExp.company}</p>
               </div>
-            </div>
-
-            {/* Meta info */}
-            <div className="flex flex-wrap gap-6 text-gray-400 mb-8 pb-8 border-b border-white/10">
-              <span className="flex items-center gap-2">
-                <FaMapMarkerAlt className="w-4 h-4 text-rose-400/60" />
-                {activeExp.location}
-              </span>
-              <span className="flex items-center gap-2">
-                <FaCalendarAlt className="w-4 h-4 text-rose-400/60" />
-                {activeExp.startDate} — {activeExp.endDate}
-              </span>
-            </div>
-
-            {/* Description */}
-            <p className="text-gray-300 leading-relaxed text-lg">
-              {activeExp.description}
-            </p>
-
-            {/* Navigation dots */}
-            <div className="mt-10 pt-6 border-t border-white/10 flex items-center gap-4">
-              <div className="flex gap-2">
-                {experiences.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveIndex(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      activeIndex === index 
-                        ? "bg-rose-500 w-8" 
-                        : "bg-gray-600 w-2 hover:bg-gray-500"
-                    }`}
-                    aria-label={`View experience ${index + 1}`}
-                  />
-                ))}
-              </div>
-              <span className="text-sm text-gray-500 ml-auto">
-                {activeIndex + 1} of {experiences.length}
-              </span>
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ export const education: Education = {
   location: "Troy, NY",
   startDate: "August 2022",
   endDate: "December 2025",
-  logo: "/logo.png",
+  logo: "/logos/rpi.png",
   coursework: [
     "Artificial Intelligence",
     "Software Design & Documentation",

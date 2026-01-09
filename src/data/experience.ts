@@ -31,7 +31,7 @@ export const experiences: Experience[] = [
     startDate: "Sep 2025",
     endDate: "Dec 2025",
     description:
-      "Engineered a hybrid bidirectional traceability system using SBERT and Pandas, implementing a dual-index architecture that maps unstructured PDF contract clauses to First-Order Logic representations via vector embeddings and cosine similarity. Enchanced transparency of computable contract data by developing a deterministic pipeline to classify modifications with explainable logic, validating the system's ability to align with original requirements through extensive testing on financial datasets.",
+      "Engineered a hybrid bidirectional traceability system using Sentence Transformers and Pandas, implementing a dual-index architecture that maps unstructured PDF contract clauses to FOL representations via vector embeddings and cosine similarity. Enchanced transparency of computable contract data by developing a deterministic pipeline to classify modifications with explainable logic, validating the system's ability to align with original requirements through extensive testing on financial datasets.",
     type: "work",
     logo: "/logos/craft.png",
   },
@@ -57,7 +57,7 @@ export const experiences: Experience[] = [
     description:
       "Independently developed a machine learning algorithm using Scikit-learn and PyTorch to classify elastic stress contour images of barrier coating microstructures, assisted in postdoctoral research under RPI's department of Aerospace Engineering for optimal material selection. Employed convolutional neural networks (CNNs) to assess cross-sectional images of materials within combustion chambers, resulting in a 250% workflow acceleration by replacing finite element simulations with ML-based predictions.",
     type: "work",
-    logo: "/logos/rpi.png",
+    logo: "/logo.png",
   },
   {
     id: "northwestern",
@@ -67,7 +67,7 @@ export const experiences: Experience[] = [
     startDate: "Jun 2023",
     endDate: "Nov 2024",
     description:
-      "Leveraged Monte Carlo probability simulations in Microsoft Dynamics and curated Power BI dashboards to manage growth-oriented business plans for 200+ prospects, enabled client retention by 300% through data-driven insights in the wealth accumulation, risk management, and retirement planning spaces.",
+      "Leveraged Monte Carlo probability simulations in Microsoft Dynamics and curated Power BI dashboards to manage growth-oriented business plans for 200+ prospects, enabled client retention by 300% through data-driven insights in the wealth accumulation, risk management, and retirement planning arenas. Operated as a Series 17-55 licensed financial representative, providing comprehensive financial planning and advisory services in the insurance space to clients.",
     type: "work",
     logo: "/logos/northwestern.png",
   },

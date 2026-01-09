@@ -13,7 +13,7 @@ export default function Projects() {
 
       {/* Background accents - animated */}
       <div 
-        className="absolute top-[10%] left-[5%] w-[400px] h-[400px] rounded-full blur-[50px] animate-blob-drift animation-delay-3000"
+        className="absolute bottom-[20%] left-[5%] w-[400px] h-[400px] rounded-full blur-[50px] animate-blob-drift animation-delay-3000"
         style={{
           background: 'radial-gradient(circle, rgba(34,197,94,0.5) 0%, rgba(6,182,212,0.35) 35%, rgba(59,130,246,0.2) 70%, transparent 100%)'
         }}
@@ -28,12 +28,11 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto relative z-10">
         <SectionHeading title="My Projects" />
 
-        {/* 5 Project Cards - Evenly Spaced */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {projects.map((project) => (
             <div
               key={project.id}
-              className="card p-6 group flex flex-col min-h-[500px]"
+              className="card p-6 group flex flex-col min-h-[250px]"
             >
               {/* Title */}
               <h3 className="text-lg font-bold text-white mb-1 group-hover:text-rose-400 transition-colors">
@@ -72,7 +71,7 @@ export default function Projects() {
                     className="flex items-center gap-2 text-xs text-gray-400 hover:text-rose-400 transition-colors"
                   >
                     <FaGithub className="w-4 h-4" />
-                    <span>View Code</span>
+                    <span>View More</span>
                   </a>
                 )}
                 {project.liveUrl && (
