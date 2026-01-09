@@ -185,7 +185,7 @@ export default function Hero() {
         </h2>
 
         {/* Description */}
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
           A rather passionate developer focused on
           creating elegant products that deliver real-world value in the worlds of tech and finance.
         </p>
@@ -198,32 +198,32 @@ export default function Hero() {
               <div className="flex items-center gap-3 sm:gap-4">
                 <div className="text-center">
                   <span className="text-2xl sm:text-3xl font-bold text-white">{timeElapsed.years}</span>
-                  <p className="text-xs text-gray-500">years</p>
+                  <p className="text-xs text-gray-300">years</p>
                 </div>
-                <span className="text-gray-600">:</span>
+                <span className="text-gray-400">:</span>
                 <div className="text-center">
                   <span className="text-2xl sm:text-3xl font-bold text-white">{timeElapsed.months}</span>
-                  <p className="text-xs text-gray-500">months</p>
+                  <p className="text-xs text-gray-300">months</p>
                 </div>
-                <span className="text-gray-600">:</span>
+                <span className="text-gray-400">:</span>
                 <div className="text-center">
                   <span className="text-2xl sm:text-3xl font-bold text-white">{timeElapsed.days}</span>
-                  <p className="text-xs text-gray-500">days</p>
+                  <p className="text-xs text-gray-300">days</p>
                 </div>
-                <span className="text-gray-600">:</span>
+                <span className="text-gray-400">:</span>
                 <div className="text-center">
                   <span className="text-2xl sm:text-3xl font-bold text-rose-400">{String(timeElapsed.hours).padStart(2, '0')}</span>
-                  <p className="text-xs text-gray-500">hrs</p>
+                  <p className="text-xs text-gray-300">hrs</p>
                 </div>
-                <span className="text-gray-600">:</span>
+                <span className="text-gray-400">:</span>
                 <div className="text-center">
                   <span className="text-2xl sm:text-3xl font-bold text-rose-400">{String(timeElapsed.minutes).padStart(2, '0')}</span>
-                  <p className="text-xs text-gray-500">min</p>
+                  <p className="text-xs text-gray-300">min</p>
                 </div>
-                <span className="text-gray-600">:</span>
+                <span className="text-gray-400">:</span>
                 <div className="text-center">
                   <span className="text-2xl sm:text-3xl font-bold text-rose-400">{String(timeElapsed.seconds).padStart(2, '0')}</span>
-                  <p className="text-xs text-gray-500">sec</p>
+                  <p className="text-xs text-gray-300">sec</p>
                 </div>
               </div>
             </div>

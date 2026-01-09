@@ -35,12 +35,12 @@ export default function Projects() {
               className="card p-6 group flex flex-col min-h-[250px]"
             >
               {/* Title */}
-              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-rose-400 transition-colors">
+              <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-rose-400 transition-colors">
                 {project.title}
               </h3>
 
               {/* Tagline */}
-              <p className="text-rose-400/80 text-xs font-medium mb-4">
+              <p className="text-rose-400/80 text-sm font-medium mb-4">
                 {project.tagline}
               </p>
 

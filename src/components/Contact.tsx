@@ -100,8 +100,8 @@ export default function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="card p-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="card p-8">
+            <form onSubmit={handleSubmit} className="space-y-8">
               <div>
                 <label
                   htmlFor="name"
@@ -181,7 +181,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-rose-500 text-white font-semibold hover:bg-rose-600 hover:shadow-lg hover:shadow-rose-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-rose-500/70 text-white font-semibold hover:bg-rose-600 hover:shadow-lg hover:shadow-rose-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 {isSubmitting ? (
                   <>
@@ -212,14 +212,14 @@ export default function Contact() {
           {/* Get in Touch Sidebar */}
           <div className="flex flex-col justify-center lg:pl-8">
             {/* Resume Toast - positioned above Get in Touch */}
-            <div
-              className={`transition-all duration-500 mb-4 ${
-                showResumeToast
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 -translate-y-2 pointer-events-none h-0 mb-0"
-              }`}
-            >
-              <div className="flex items-center gap-3 px-5 py-4 bg-rose-950/80 border border-rose-500/50 rounded-xl backdrop-blur-sm">
+            <div className="mb-4 h-[60px]">
+              <div
+                className={`flex items-center gap-3 px-5 py-4 bg-rose-800/40 border border-rose-500/50 rounded-xl backdrop-blur-sm transition-all duration-300 ${
+                  showResumeToast
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 -translate-y-2 pointer-events-none"
+                }`}
+              >
                 <FaFileAlt className="w-5 h-5 text-rose-400 flex-shrink-0" />
                 <p className="text-gray-200 text-sm flex-1">
                   Interested in my resume? Leave a note below!

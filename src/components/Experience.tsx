@@ -50,43 +50,62 @@ export default function Experience() {
 
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Left side - Stacked role cards */}
-          <div className="lg:w-[380px] flex-shrink-0 space-y-3">
+          <div className="lg:w-[380px] flex-shrink-0 flex flex-col justify-between h-[520px]">
             {experiences.map((exp, index) => (
               <button
                 key={exp.id}
                 onClick={() => handleCardChange(index)}
-                className={`w-full group flex items-center gap-4 px-5 py-4 rounded-xl text-left transition-all duration-300 ${
+                className={`w-full group flex flex-col px-5 py-3 rounded-xl text-left transition-all duration-300 ${
                   activeIndex === index
                     ? "bg-white/15 border-l-4 border-white shadow-lg shadow-white/5"
                     : "bg-white/5 border-l-4 border-transparent hover:bg-white/10 hover:border-gray-600"
                 }`}
               >
-                {/* Company Logo or Fallback Icon */}
-                <div className={`w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden ${
-                  activeIndex === index 
-                    ? "bg-white/10" 
-                    : "bg-white/5"
-                }`}>
-                  {exp.logo ? (
-                    <Image
-                      src={exp.logo}
-                      alt={`${exp.company} logo`}
-                      width={42}
-                      height={42}
-                      className="object-contain"
-                    />
-                  ) : exp.type === "work" ? (
-                    <FaBriefcase className={`w-5 h-5 ${activeIndex === index ? "text-rose-400" : "text-gray-400"}`} />
-                  ) : (
-                    <FaFlask className={`w-5 h-5 ${activeIndex === index ? "text-rose-400" : "text-gray-400"}`} />
-                  )}
+                <div className="flex items-center gap-4">
+                  {/* Company Logo or Fallback Icon */}
+                  <div className={`w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center overflow-hidden ${
+                    activeIndex === index 
+                      ? "bg-white/10" 
+                      : "bg-white/5"
+                  }`}>
+                    {exp.logo ? (
+                      <Image
+                        src={exp.logo}
+                        alt={`${exp.company} logo`}
+                        width={42}
+                        height={42}
+                        className="object-contain"
+                      />
+                    ) : exp.type === "work" ? (
+                      <FaBriefcase className={`w-5 h-5 ${activeIndex === index ? "text-rose-400" : "text-gray-400"}`} />
+                    ) : (
+                      <FaFlask className={`w-5 h-5 ${activeIndex === index ? "text-rose-400" : "text-gray-400"}`} />
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-semibold text-gray-500 mt-0.5">{exp.title}</p>
+                    <p className={`font-semibold text-sm ${activeIndex === index ? "text-rose-400" : "text-white"}`}>
+                      {exp.company}
+                    </p>
+                  </div>
                 </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-semibold text-gray-500 mt-0.5">{exp.title}</p>
-                  <p className={`font-semibold text-sm ${activeIndex === index ? "text-rose-400" : "text-white"}`}>
-                    {exp.company}
-                  </p>
-                </div>
+                {/* Skills bubbles */}
+                {exp.skills && exp.skills.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-2 ml-14">
+                    {exp.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className={`px-2 py-0.5 text-xs rounded-full transition-colors ${
+                          activeIndex === index
+                            ? "bg-rose-500/20 text-rose-300 border border-rose-500/30"
+                            : "bg-white/5 text-gray-400 border border-white/10"
+                        }`}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </button>
             ))}
           </div>

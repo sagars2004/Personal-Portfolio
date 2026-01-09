@@ -14,14 +14,14 @@ export const projects: Project[] = [
     title: "Flowstate",
     tagline: "Distraction-Aware Productivity and Focus Tool",
     description:
-      "Developing a local-first Chrome extension AI layer that passively captures behavioral signals to model personalized focus fingerprints with React and SQLite endpoints. Building real-time pattern recognition with Llama 3.1 inference to detect distraction loops and generate feedback.",
+      "Developing a local-first Chrome extension AI layer that passively captures behavioral signals to model personalized focus fingerprints with React and SQLite endpoints. Currently building real-time pattern recognition with Llama 3.1 inference to detect distraction loops and generate feedback.",
     technologies: [],
     githubUrl: "https://github.com/sagars2004/Flowstate",
   },
   {
     id: "rentpad",
     title: "RentPad Homes",
-    tagline: "Intelligent Property Management",
+    tagline: "Intelligent RentalProperty Management Platform",
     description:
       "Contributing to early-stage startup development of a full-stack platform to refine property management for small-to-mid-size landlords and investors, providing enhanced tools to manage automated payments, maintenance requests, and tenant communication. More coming soon...",
     technologies: [],
@@ -30,7 +30,7 @@ export const projects: Project[] = [
   {
     id: "openplaybook",
     title: "OpenPlaybook",
-    tagline: "CV-Powered Sports Analytics",
+    tagline: "CV-Powered Sports Analytics Simulation",
     description:
       "Built an open-source application enabling computer vision pipeline using Python's supervision and inference libraries to ingest sports video data, apply object detection and tracking, and extract structured insights for deeper, context-aware understanding of in-game actions through OpenCV.",
     technologies: [],
