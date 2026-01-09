@@ -27,6 +27,11 @@ import {
   SiR,
   SiCplusplus,
   SiC,
+  SiKaggle,
+  SiSpringboot,
+  SiOracle,
+  SiLooker,
+  SiApachemaven,
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
 
@@ -64,6 +69,11 @@ const iconMap: Record<string, React.ElementType> = {
   r: SiR,
   cplusplus: SiCplusplus,
   c: SiC,
+  kaggle: SiKaggle,
+  springboot: SiSpringboot,
+  oracle: SiOracle,
+  looker: SiLooker,
+  maven: SiApachemaven,
 };
 
 export default function TechIcon({ icon, name, className = "" }: TechIconProps) {

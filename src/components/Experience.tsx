@@ -33,15 +33,15 @@ export default function Experience() {
 
       {/* Background accents - animated */}
       <div 
-        className="absolute top-[20%] right-[5%] w-[400px] h-[400px] rounded-full blur-[50px] animate-blob animation-delay-2000"
+        className="absolute top-[20%] right-[5%] w-[400px] h-[400px] rounded-full blur-[35px] animate-blob animation-delay-2000"
         style={{
-          background: 'radial-gradient(circle, rgba(59,130,246,0.55) 0%, rgba(168,85,247,0.4) 35%, rgba(244,63,94,0.2) 70%, transparent 100%)'
+          background: 'radial-gradient(circle, rgba(59,130,246,0.55) 0%, rgba(168,85,247,0.4) 25%, rgba(244,63,94,0.12) 45%, transparent 60%)'
         }}
       />
       <div 
-        className="absolute bottom-[10%] right-[10%] w-[350px] h-[350px] rounded-full blur-[45px] animate-blob-pulse animation-delay-4000"
+        className="absolute bottom-[10%] right-[10%] w-[350px] h-[350px] rounded-full blur-[32px] animate-blob-pulse animation-delay-4000"
         style={{
-          background: 'radial-gradient(circle, rgba(251,146,60,0.55) 0%, rgba(236,72,153,0.4) 40%, rgba(139,92,246,0.2) 75%, transparent 100%)'
+          background: 'radial-gradient(circle, rgba(251,146,60,0.55) 0%, rgba(236,72,153,0.4) 25%, rgba(139,92,246,0.12) 50%, transparent 65%)'
         }}
       />
       

@@ -19,15 +19,15 @@ interface ParticleBackgroundProps {
 }
 
 export default function ParticleBackground({
-  particleCount = 50,
-  particleColor = "rgba(244, 63, 94, 0.5)",
-  lineColor = "rgba(244, 63, 94, 0.1)",
+  particleCount = 10,
+  particleColor = "rgba(20, 20, 20, 0.5)",
+  lineColor = "rgba(209, 213, 219, 0.1)",
   maxDistance = 150,
-  speed = 0.3,
+  speed = 0.4,
 }: ParticleBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;

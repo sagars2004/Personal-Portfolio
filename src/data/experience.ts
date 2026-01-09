@@ -55,7 +55,7 @@ export const experiences: Experience[] = [
     startDate: "Jan 2024",
     endDate: "Jul 2024",
     description:
-      "Independently developed a machine learning algorithm using Scikit-learn and PyTorch to classify elastic stress contour images of barrier coating microstructures, assisted in postdoctoral research under RPI's department of Aerospace Engineering for optimal material selection. Employed convolutional neural networks (CNNs) to assess cross-sectional images of materials within combustion chambers, resulting in a 250% workflow acceleration by replacing finite element simulations with ML-based predictions.",
+      "Independently developed a machine learning algorithm using Scikit-learn and PyTorch to classify elastic stress contour images of barrier coating microstructures, assisted in postdoctoral research under RPI's department of Aerospace Engineering for optimal material selection. Employed convolutional neural networks (CNNs) to assess thermal images of materials within combustion chambers, resulting in a 250% workflow acceleration by replacing finite element simulations with ML-based predictions.",
     type: "work",
     logo: "/logo.png",
   },

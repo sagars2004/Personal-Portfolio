@@ -20,15 +20,15 @@ export default function About() {
 
       {/* Background accents - animated */}
       <div 
-        className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full blur-[50px] animate-blob-drift"
+        className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full blur-[35px] animate-blob-drift"
         style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.55) 0%, rgba(59,130,246,0.4) 35%, rgba(6,182,212,0.25) 70%, transparent 100%)'
+          background: 'radial-gradient(circle, rgba(139,92,246,0.55) 0%, rgba(59,130,246,0.4) 25%, rgba(6,182,212,0.15) 45%, transparent 60%)'
         }}
       />
       <div 
-        className="absolute bottom-[20%] left-[35%] w-[350px] h-[350px] rounded-full blur-[45px] animate-blob-reverse animation-delay-3000"
+        className="absolute bottom-[20%] left-[35%] w-[350px] h-[350px] rounded-full blur-[32px] animate-blob-reverse animation-delay-3000"
         style={{
-          background: 'radial-gradient(circle, rgba(236,72,153,0.55) 0%, rgba(168,85,247,0.4) 40%, rgba(59,130,246,0.2) 75%, transparent 100%)'
+          background: 'radial-gradient(circle, rgba(236,72,153,0.55) 0%, rgba(168,85,247,0.4) 25%, rgba(59,130,246,0.12) 50%, transparent 65%)'
         }}
       />
       
@@ -48,22 +48,13 @@ export default function About() {
                 />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white mb-2">Sagar Sahu</h3>
+                <h3 className="text-5xl font-bold text-white mb-2">Sagar Sahu</h3>
                 <p className="text-rose-400 font-medium">Software Developer & AI Enthusiast</p>
               </div>
             </div>
 
             <p className="text-gray-300 text-lg leading-relaxed">
-              I&apos;m a recent college graduate. My passion lies in building impactful solutions at the
-              intersection of machine learning, software engineering, and fintech.
-            </p>
-
-            <p className="text-gray-400 leading-relaxed">
-              Whether it&apos;s developing neural networks for research, building
-              full-stack applications, or analyzing financial data, I strive to
-              create elegant, maintainable solutions that deliver real-world value.
-              I&apos;m always eager to learn new technologies and collaborate on
-              challenging projects.
+              I&apos;m a recent college graduate eager to build cool stuff. My expertise spans end-to-end development, including frontend engineering, backend systems, and database design. I pair strong software fundamentals with modern, cloud-native and AI-driven practices to build scalable, efficient applications using current cloud platforms, machine learning frameworks, and data engineering stacks.
             </p>
 
             {/* Coursework Pills */}
@@ -91,8 +82,8 @@ export default function About() {
           </div>
 
           {/* Education Card */}
-          <div className="card p-8">
-            <div className="flex items-center gap-4 mb-8">
+          <div className="card p-6">
+            <div className="flex items-center gap-4 mb-5">
               <div className="w-16 h-14 rounded-xl bg-white/10 flex items-center justify-center overflow-hidden flex-shrink-0">
                 <Image
                   src={education.logo}
@@ -116,21 +107,21 @@ export default function About() {
             <div className="space-y-6">
               {/* Concentration & Minor */}
               <div className="flex flex-wrap gap-2">
-                <span className="px-4 py-2 text-sm rounded-xl bg-white/5 border border-rose-500/30 text-gray-300">
+                <span className="px-3 py-1.5 text-sm rounded-xl bg-white/5 border border-rose-500/30 text-gray-300">
                   {education.concentration}
                 </span>
-                <span className="px-4 py-2 text-sm rounded-xl bg-white/5 border border border-rose-500/30 text-gray-300">
+                <span className="px-3 py-1.5 text-sm rounded-xl bg-white/5 border border border-rose-500/30 text-gray-300">
                   Minor: {education.minor}
                 </span>
               </div>
 
               {/* Honors */}
               <div>
-                <div className="flex items-center gap-2 text-gray-300 mb-3">
+                <div className="flex items-center gap-2 text-gray-300 mb-2">
                   <FaAward className="w-4 h-4 text-rose-400" />
-                  <span className="font-semibold">Honors & Awards</span>
+                  <span className="font-semibold text-sm">Honors & Awards</span>
                 </div>
-                <ul className="text-sm text-gray-400 space-y-2">
+                <ul className="text-sm text-gray-400 space-y-1">
                   {education.honors.map((honor, index) => (
                     <li key={index} className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />
@@ -142,11 +133,11 @@ export default function About() {
 
               {/* Extracurriculars */}
               <div>
-                <div className="flex items-center gap-2 text-gray-300 mb-3">
+                <div className="flex items-center gap-2 text-gray-300 mb-2">
                   <FaUsers className="w-4 h-4 text-rose-400" />
-                  <span className="font-semibold">Extracurriculars</span>
+                  <span className="font-semibold text-sm">Extracurriculars</span>
                 </div>
-                <ul className="text-sm text-gray-400 space-y-2">
+                <ul className="text-sm text-gray-400 space-y-1">
                   {education.extracurriculars.map((activity, index) => (
                     <li key={index} className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />
