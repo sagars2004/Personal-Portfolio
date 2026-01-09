@@ -17,7 +17,7 @@ export interface Education {
 export const education: Education = {
   id: "rpi",
   degree: "B.S. in Computer Science",
-  concentration: "Concentration: AI/Machine Learning and Data Science",
+  concentration: "Concentration: AI/ML and Data Science",
   minor: "Economics of Banking and Finance",
   school: "Rensselaer Polytechnic Institute - School of Science",
   location: "Troy, NY",

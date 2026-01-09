@@ -16,7 +16,7 @@ export default function About() {
   return (
     <section id="about" className="py-24 px-4 scroll-mt-1 relative overflow-hidden">
       {/* Particle Background */}
-      <ParticleBackground particleCount={100} speed={0.2} maxDistance={180} />
+      <ParticleBackground starCount={70} speed={0.1} />
 
       {/* Background accents - animated */}
       <div 

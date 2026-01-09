@@ -12,16 +12,16 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    id: "fidelity",
-    title: "Full-Stack Software Engineer",
-    company: "Fidelity Investments",
-    location: "Jersey City, NJ",
-    startDate: "Jan 2026",
-    endDate: "Present",
+    id: "incoming",
+    title: "To be announced",
+    company: "Incoming",
+    location: "TBD",
+    startDate: "",
+    endDate: "",
     description:
-      "Incoming 2026 LEAP Associate Software Engineer",
+      "Stay tuned...",
     type: "work",
-    logo: "/logos/fidelity.png",
+    logo: "",
   },
   {
     id: "craft",

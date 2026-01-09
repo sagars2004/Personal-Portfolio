@@ -108,7 +108,7 @@ export default function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden"
     >
       {/* Particle Background */}
-      <ParticleBackground particleCount={120} speed={0.25} maxDistance={200} />
+      <ParticleBackground starCount={100} speed={0.12} />
 
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">

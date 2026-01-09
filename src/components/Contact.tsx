@@ -79,7 +79,7 @@ export default function Contact() {
       className="min-h-screen py-24 px-4 scroll-mt-1 relative overflow-hidden"
     >
       {/* Particle Background */}
-      <ParticleBackground particleCount={80} speed={0.15} maxDistance={180} />
+      <ParticleBackground starCount={60} speed={0.1} />
 
       {/* Background accents - animated */}
       <div 

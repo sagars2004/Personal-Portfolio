@@ -9,7 +9,7 @@ export default function Projects() {
   return (
     <section id="projects" className="min-h-screen py-24 px-4 scroll-mt-1 relative overflow-hidden">
       {/* Particle Background */}
-      <ParticleBackground particleCount={90} speed={0.18} maxDistance={180} />
+      <ParticleBackground starCount={60} speed={0.1} />
 
       {/* Background accents - animated */}
       <div 
