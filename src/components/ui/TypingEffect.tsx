@@ -14,11 +14,9 @@ export default function TypingEffect({
   speed = 60,
 }: TypingEffectProps) {
   const [displayedText, setDisplayedText] = useState("");
-  const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
     setDisplayedText("");
-    setIsComplete(false);
 
     if (!text) return;
 
@@ -28,7 +26,6 @@ export default function TypingEffect({
         setDisplayedText(text.slice(0, currentIndex + 1));
         currentIndex++;
       } else {
-        setIsComplete(true);
         clearInterval(interval);
       }
     }, speed);
