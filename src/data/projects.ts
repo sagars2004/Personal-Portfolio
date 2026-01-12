@@ -21,7 +21,7 @@ export const projects: Project[] = [
   {
     id: "rentpad",
     title: "RentPad Homes",
-    tagline: "Intelligent RentalProperty Management Platform",
+    tagline: "Intelligent Rental Property Management Platform",
     description:
       "Contributing to early-stage startup development of a full-stack platform to refine property management for small-to-mid-size landlords and investors, providing enhanced tools to manage automated payments, maintenance requests, and tenant communication. More coming soon...",
     technologies: [],

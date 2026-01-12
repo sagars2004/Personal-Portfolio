@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaPaperPlane, FaEnvelope, FaFileAlt, FaTimes } from "react-icons/fa";
+import { SiLinktree } from "react-icons/si";
 import SectionHeading from "./ui/SectionHeading";
 import ParticleBackground from "./ui/ParticleBackground";
 import { socialLinks, email } from "@/data/social";
@@ -68,6 +69,8 @@ export default function Contact() {
         return <FaGithub className="w-5 h-5" />;
       case "linkedin":
         return <FaLinkedin className="w-5 h-5" />;
+      case "linktree":
+        return <SiLinktree className="w-5 h-5" />;
       default:
         return null;
     }
@@ -214,7 +217,7 @@ export default function Contact() {
             {/* Resume Toast - positioned above Get in Touch */}
             <div className="mb-4 h-[60px]">
               <div
-                className={`flex items-center gap-3 px-5 py-4 bg-rose-800/40 border border-rose-500/50 rounded-xl backdrop-blur-sm transition-all duration-300 ${
+                className={`flex items-center gap-3 px-5 py-4 bg-gray-800/40 border border-rose-500/50 rounded-xl backdrop-blur-sm transition-all duration-300 ${
                   showResumeToast
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 -translate-y-2 pointer-events-none"

@@ -1,6 +1,7 @@
 "use client";
 
 import { FaHeart, FaGithub, FaLinkedin } from "react-icons/fa";
+import { SiLinktree } from "react-icons/si";
 import { socialLinks } from "@/data/social";
 
 const navLinks = [
@@ -20,6 +21,8 @@ export default function Footer() {
 
   const getSocialIcon = (icon: string) => {
     switch (icon) {
+      case "linktree":
+        return <SiLinktree className="w-9 h-9" />;
       case "github":
         return <FaGithub className="w-9 h-9" />;
       case "linkedin":

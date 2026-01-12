@@ -2,10 +2,16 @@ export interface SocialLink {
   id: string;
   name: string;
   url: string;
-  icon: "github" | "linkedin" | "email" | "twitter";
+  icon: "github" | "linkedin" | "email" | "twitter" | "linktree";
 }
 
 export const socialLinks: SocialLink[] = [
+  {
+    id: "linktree",
+    name: "Linktree",
+    url: "https://linktr.ee/sagarsahu8749", // Update with your Linktree URL
+    icon: "linktree",
+  },
   {
     id: "github",
     name: "GitHub",

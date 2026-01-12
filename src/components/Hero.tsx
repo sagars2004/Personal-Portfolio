@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaMapMarkerAlt, FaFileAlt } from "react-icons/fa";
+import { SiLinktree } from "react-icons/si";
 import TypingEffect from "./ui/TypingEffect";
 import ParticleBackground from "./ui/ParticleBackground";
 import { socialLinks, location } from "@/data/social";
@@ -97,6 +98,8 @@ export default function Hero() {
         return <FaGithub className="w-5 h-5" />;
       case "linkedin":
         return <FaLinkedin className="w-5 h-5" />;
+      case "linktree":
+        return <SiLinktree className="w-5 h-5" />;
       default:
         return null;
     }
