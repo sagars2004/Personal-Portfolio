@@ -1,7 +1,7 @@
 export interface Technology {
   name: string;
   icon: string;
-  category: "language" | "library" | "tool";
+  category: "language" | "library" | "tool" | "ai";
 }
 
 export const technologies: Technology[] = [
@@ -36,8 +36,16 @@ export const technologies: Technology[] = [
   { name: "Linux", icon: "linux", category: "tool" },
   { name: "Maven", icon: "maven", category: "tool" },
   { name: "Postman", icon: "postman", category: "tool" },
-  { name: "Jira", icon: "jira", category: "tool" },
+  { name: "Xcode", icon: "xcode", category: "tool" },
   { name: "Kaggle", icon: "kaggle", category: "tool" },
   { name: "Oracle Cloud", icon: "oracle", category: "tool" },
-  { name: "BigQuery", icon: "googlecloud", category: "tool" },
+  { name: "App Store", icon: "appstore", category: "tool" },
+
+  // AI & Automation
+  { name: "Gemini API", icon: "gemini", category: "ai" },
+  { name: "Claude", icon: "claude", category: "ai" },
+  { name: "IBM WatsonX", icon: "watsonx", category: "ai" },
+  { name: "Cursor", icon: "cursor", category: "ai" },
+  { name: "OpenAI", icon: "openai", category: "ai" },
+  { name: "Antigravity", icon: "antigravity", category: "ai" },
 ];

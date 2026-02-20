@@ -13,17 +13,17 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    id: "incoming",
-    title: "To be announced",
-    company: "Incoming",
-    location: "TBD",
-    startDate: "",
-    endDate: "",
+    id: "new job",
+    title: "Full-Stack Software Engineer",
+    company: "Fidelity Investments",
+    location: "New York, NY",
+    startDate: "Jan 2026",
+    endDate: "Present",
     description:
       "Stay tuned...",
     type: "work",
-    logo: "",
-    skills: [],
+    logo: "/logos/fidelity.png",
+    skills: ["Java", "Spring Boot", "Node.js", "SQL"],
   },
   {
     id: "craft",
@@ -41,7 +41,7 @@ export const experiences: Experience[] = [
   {
     id: "carmax",
     title: "Software Engineer Intern",
-    company: "CarMax, Inc",
+    company: "CarMax, Inc.",
     location: "Richmond, VA",
     startDate: "Jun 2025",
     endDate: "Aug 2025",
@@ -49,7 +49,7 @@ export const experiences: Experience[] = [
       "Deployed a production-wide E2E automation pipeline using Python and C# to associate 3,600+ Oracle Invoice records, reducing a 4-step audit process with a 20x speedup by leveraging RESTful API integrations and backend validation through Postman and PL/SQL. Configured a full-stack web application built on OCI services to streamline 3rd-party vendor onboarding, enable secure data exchange via SaaS/PaaS tools, and optimize registration workflows for high-visibility suppliers by cutting manual entry time by 70%.",
     type: "work",
     logo: "/logos/carmax.png",
-    skills: ["Python", "C#", "Oracle Cloud", "SQL"],
+    skills: ["Python", "C#", "Oracle Cloud", "PL/SQL"],
   },
   {
     id: "rpi",

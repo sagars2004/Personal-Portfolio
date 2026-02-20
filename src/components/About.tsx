@@ -12,6 +12,7 @@ export default function About() {
   const languages = technologies.filter((t) => t.category === "language");
   const libraries = technologies.filter((t) => t.category === "library");
   const tools = technologies.filter((t) => t.category === "tool");
+  const ai = technologies.filter((t) => t.category === "ai");
 
   return (
     <section id="about" className="py-24 px-4 scroll-mt-1 relative overflow-hidden">
@@ -19,19 +20,19 @@ export default function About() {
       <ParticleBackground starCount={70} speed={0.1} />
 
       {/* Background accents - animated */}
-      <div 
+      <div
         className="absolute top-[10%] right-[5%] w-[400px] h-[400px] rounded-full blur-[18px] animate-blob-drift"
         style={{
           background: 'radial-gradient(circle, rgba(139,92,246,0.7) 0%, rgba(59,130,246,0.5) 30%, rgba(6,182,212,0.2) 55%, transparent 70%)'
         }}
       />
-      <div 
+      <div
         className="absolute bottom-[20%] left-[35%] w-[350px] h-[350px] rounded-full blur-[16px] animate-blob-reverse animation-delay-3000"
         style={{
           background: 'radial-gradient(circle, rgba(236,72,153,0.7) 0%, rgba(168,85,247,0.5) 30%, rgba(59,130,246,0.18) 55%, transparent 70%)'
         }}
       />
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
         <SectionHeading title="About Me" />
 
@@ -177,7 +178,7 @@ export default function About() {
             {/* Languages */}
             <div>
               <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
-                Languages
+                Programming Languages
               </h4>
               <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3">
                 {languages.map((tech) => (
@@ -205,6 +206,18 @@ export default function About() {
               </h4>
               <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3">
                 {tools.map((tech) => (
+                  <TechIcon key={tech.name} icon={tech.icon} name={tech.name} />
+                ))}
+              </div>
+            </div>
+
+            {/* AI & Automation */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">
+                AI & Automation
+              </h4>
+              <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-3">
+                {ai.map((tech) => (
                   <TechIcon key={tech.name} icon={tech.icon} name={tech.name} />
                 ))}
               </div>
