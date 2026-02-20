@@ -20,7 +20,7 @@ const BIRTH_DATE = new Date("2004-03-01T10:00:00");
 
 function calculateTimeElapsed(): TimeElapsed {
   const now = new Date();
-  
+
   let years = now.getFullYear() - BIRTH_DATE.getFullYear();
   let months = now.getMonth() - BIRTH_DATE.getMonth();
   let days = now.getDate() - BIRTH_DATE.getDate();
@@ -33,26 +33,26 @@ function calculateTimeElapsed(): TimeElapsed {
     seconds += 60;
     minutes--;
   }
-  
+
   // Handle negative minutes
   if (minutes < 0) {
     minutes += 60;
     hours--;
   }
-  
+
   // Handle negative hours
   if (hours < 0) {
     hours += 24;
     days--;
   }
-  
+
   // Handle negative days
   if (days < 0) {
     const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
     days += prevMonth.getDate();
     months--;
   }
-  
+
   // Handle negative months
   if (months < 0) {
     months += 12;
@@ -108,7 +108,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden pt-28 pb-24 sm:pt-32 sm:pb-28"
     >
       {/* Particle Background */}
       <ParticleBackground starCount={100} speed={0.12} />
@@ -116,39 +116,39 @@ export default function Hero() {
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Multi-layered Gradient Orbs - Vibrant and sharp */}
-        <div 
+        <div
           className="absolute top-[10%] left-[10%] w-[500px] h-[500px] rounded-full blur-[20px] animate-blob"
           style={{
             background: 'radial-gradient(circle, rgba(59,130,246,0.75) 0%, rgba(168,85,247,0.55) 30%, rgba(244,63,94,0.25) 55%, transparent 70%)'
           }}
         />
-        <div 
+        <div
           className="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full blur-[18px] animate-blob-reverse animation-delay-2000"
           style={{
             background: 'radial-gradient(circle, rgba(236,72,153,0.75) 0%, rgba(139,92,246,0.55) 30%, rgba(59,130,246,0.2) 55%, transparent 70%)'
           }}
         />
-        <div 
+        <div
           className="absolute bottom-[10%] left-[20%] w-[450px] h-[450px] rounded-full blur-[20px] animate-blob-drift animation-delay-4000"
           style={{
             background: 'radial-gradient(circle, rgba(34,197,94,0.7) 0%, rgba(6,182,212,0.5) 30%, rgba(168,85,247,0.2) 55%, transparent 70%)'
           }}
         />
-        <div 
+        <div
           className="absolute top-[50%] right-[30%] w-[350px] h-[350px] rounded-full blur-[16px] animate-blob-pulse animation-delay-1000"
           style={{
             background: 'radial-gradient(circle, rgba(251,146,60,0.75) 0%, rgba(244,63,94,0.55) 30%, rgba(236,72,153,0.2) 55%, transparent 70%)'
           }}
         />
-        <div 
+        <div
           className="absolute bottom-[30%] right-[5%] w-[300px] h-[300px] rounded-full blur-[14px] animate-blob animation-delay-3000"
           style={{
             background: 'radial-gradient(circle, rgba(139,92,246,0.75) 0%, rgba(59,130,246,0.55) 30%, rgba(6,182,212,0.2) 55%, transparent 70%)'
           }}
         />
-        
+
         {/* Grid Pattern Overlay */}
-        <div 
+        <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
@@ -156,15 +156,15 @@ export default function Hero() {
             backgroundSize: '50px 50px'
           }}
         />
-        
+
         {/* Radial Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0a0b]" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
+      <div className="relative z-10 max-w-4xl mx-auto text-center mt-4 sm:mt-0">
         {/* Greeting with Typing Effect */}
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
           <TypingEffect
             text="Hi, I'm Sagar!"
             className="text-white"
@@ -173,13 +173,13 @@ export default function Hero() {
         </h1>
 
         {/* Location Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-grey-500/10 border border-grey-500/30 text-grey-400 text-sm mb-8 animate-float">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-grey-500/10 border border-grey-500/30 text-gray-400 text-sm mb-6 sm:mb-8 animate-float">
           <FaMapMarkerAlt className="w-4 h-4" />
           <span>{location}</span>
         </div>
 
         {/* Headline */}
-        <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-200 mb-6 max-w-3xl mx-auto font-medium">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-200 mb-4 sm:mb-6 max-w-3xl mx-auto font-medium">
           I build{" "}
           <span className="text-rose-400 font-semibold">
             intelligent, scalable, and impactful
@@ -188,14 +188,14 @@ export default function Hero() {
         </h2>
 
         {/* Description */}
-        <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-gray-300 text-lg sm:text-lg max-w-2xl mx-auto mb-6 sm:mb-10 leading-relaxed">
           A rather passionate developer focused on
           creating elegant products that deliver real-world value in the worlds of tech and finance.
         </p>
 
         {/* Life Timer */}
         {timeElapsed && (
-          <div className="flex justify-center mb-10">
+          <div className="flex justify-center mb-8 sm:mb-10">
             <div className="px-6 py-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
               <p className="text-xs text-gray-300 uppercase tracking-wider mb-3">My Time on Earth</p>
               <div className="flex items-center gap-3 sm:gap-4">
@@ -263,7 +263,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-subtle-bounce">
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-subtle-bounce">
         <span className="text-xs text-gray-500 uppercase tracking-widest">Scroll</span>
         <div className="w-6 h-10 rounded-full border-2 border-gray-600 flex items-start justify-center p-2">
           <div className="w-1 h-2 bg-rose-400 rounded-full" />
