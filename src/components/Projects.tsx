@@ -39,6 +39,9 @@ export default function Projects() {
             } else if (project.id === "rentpad") {
               LinkIcon = FaGlobe;
               linkText = "View Website";
+            } else if (project.id === "do-hackathon") {
+              LinkIcon = FaGlobe;
+              linkText = "View DigitalOcean AI Hackathon Demo";
             } else if (project.id === "ibm-hackathon") {
               LinkIcon = FaGlobe;
               linkText = "View IBM 2026 AI Hackathon Pitch";

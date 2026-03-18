@@ -22,6 +22,15 @@ export const projects: Project[] = [
     image: "/logos/finsh_mockup2.png",
   },
   {
+    id: "do-hackathon",
+    title: "Concourse",
+    tagline: "AI-Powered Airport Food Concierge",
+    description:
+      "Deployed a full-stack agentic application that leverages DigitalOcean Gradient AI to streamline dining selection for infrequent travelers at airports. Built an LLM-driven agentic workflow with RAG over curated airport/vendor menus, backed by DigitalOcean function routes for low-latency inference and prompt orchestration.",
+    technologies: [],
+    githubUrl: "https://vimeo.com/1174616035?share=copy&fl=sv&fe=ci",
+  },
+  {
     id: "ibm-hackathon",
     title: "Silent Bottleneck Detector",
     tagline: "Real-Time Engineering Performance Orchestration",
@@ -58,7 +67,7 @@ export const projects: Project[] = [
   {
     id: "iq",
     title: "IQ",
-    tagline: "AI-Powered Customer Intent Engine for Prioritization",
+    tagline: "Customer Intent Triage Engine",
     description:
       "Spearheaded ideation of a queueing interface to triage customer intent and enhance appointment flow for automotiveretail stores, built a prototype using React, Express and SQLite, and led 4 fellow interns to pitch against 75+ teams in the 2025 Innovation Garage hackathon.",
     technologies: [],
