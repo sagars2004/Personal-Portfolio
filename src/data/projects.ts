@@ -64,6 +64,7 @@ export const projects: Project[] = [
     technologies: [],
     githubUrl: "https://github.com/sagars2004/OpenPlaybook",
   },
+  /*
   {
     id: "iq",
     title: "IQ",
@@ -73,6 +74,7 @@ export const projects: Project[] = [
     technologies: [],
     githubUrl: "https://github.com/sagars2004/innovation-garage-25",
   },
+  */
   {
     id: "dinder",
     title: "Dinder",

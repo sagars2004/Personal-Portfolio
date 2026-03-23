@@ -6,7 +6,6 @@ import { SiLinktree } from "react-icons/si";
 import TypingEffect from "./ui/TypingEffect";
 import ParticleBackground from "./ui/ParticleBackground";
 import { socialLinks, location } from "@/data/social";
-import { SplineScene } from "@/components/ui/splite";
 
 interface TimeElapsed {
   years: number;
@@ -109,7 +108,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden px-4 pt-28 pb-24 sm:pt-32 sm:pb-28"
+      className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden pt-28 pb-24 sm:pt-32 sm:pb-28"
     >
       {/* Particle Background */}
       <ParticleBackground starCount={100} speed={0.12} />
@@ -163,115 +162,103 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto mt-4 grid w-full max-w-6xl grid-cols-1 items-center gap-10 sm:mt-0 lg:grid-cols-[1.15fr_0.85fr]">
-        {/* Left: existing hero content */}
-        <div className="text-center">
-          {/* Greeting with Typing Effect */}
-          <h1 className="mb-4 text-5xl font-bold sm:mb-6 sm:text-6xl lg:text-7xl">
-            <TypingEffect text="Hi, I'm Sagar!" className="text-white" speed={80} />
-          </h1>
+      <div className="relative z-10 max-w-4xl mx-auto text-center mt-4 sm:mt-0">
+        {/* Greeting with Typing Effect */}
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
+          <TypingEffect
+            text="Hi, I'm Sagar!"
+            className="text-white"
+            speed={80}
+          />
+        </h1>
 
-          {/* Location Badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-grey-500/30 bg-grey-500/10 px-4 py-2 text-sm text-gray-400 animate-float sm:mb-8">
-            <FaMapMarkerAlt className="h-4 w-4" />
-            <span>{location}</span>
-          </div>
+        {/* Location Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-grey-500/10 border border-grey-500/30 text-gray-400 text-sm mb-6 sm:mb-8 animate-float">
+          <FaMapMarkerAlt className="w-4 h-4" />
+          <span>{location}</span>
+        </div>
 
-          {/* Headline */}
-          <h2 className="mx-auto mb-4 max-w-3xl text-xl font-medium text-gray-200 sm:mb-6 sm:text-2xl lg:text-3xl">
-            I build{" "}
-            <span className="font-semibold text-rose-400">intelligent, scalable, and impactful</span>{" "}
-            solutions in AI, machine learning, and software engineering.
-          </h2>
+        {/* Headline */}
+        <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-200 mb-4 sm:mb-6 max-w-3xl mx-auto font-medium">
+          I build{" "}
+          <span className="text-rose-400 font-semibold">
+            intelligent, scalable, and impactful
+          </span>{" "}
+          solutions in AI, machine learning, and software engineering.
+        </h2>
 
-          {/* Description */}
-          <p className="mx-auto mb-6 max-w-2xl text-lg leading-relaxed text-gray-300 sm:mb-10">
-            A rather passionate developer focused on creating elegant products that deliver real-world
-            value in the worlds of tech and finance.
-          </p>
+        {/* Description */}
+        <p className="text-gray-300 text-lg sm:text-lg max-w-2xl mx-auto mb-6 sm:mb-10 leading-relaxed">
+          A rather passionate developer focused on
+          creating elegant products that deliver real-world value in the worlds of tech and finance.
+        </p>
 
-          {/* Life Timer */}
-          {timeElapsed && (
-            <div className="mb-8 flex justify-center sm:mb-10">
-              <div className="rounded-2xl border border-white/10 bg-white/5 px-6 py-4 backdrop-blur-sm">
-                <p className="mb-3 text-xs uppercase tracking-wider text-gray-300">My Time on Earth</p>
-                <div className="flex items-center gap-3 sm:gap-4">
-                  <div className="text-center">
-                    <span className="text-2xl font-bold text-white sm:text-3xl">{timeElapsed.years}</span>
-                    <p className="text-xs text-gray-300">years</p>
-                  </div>
-                  <span className="text-gray-400">:</span>
-                  <div className="text-center">
-                    <span className="text-2xl font-bold text-white sm:text-3xl">{timeElapsed.months}</span>
-                    <p className="text-xs text-gray-300">months</p>
-                  </div>
-                  <span className="text-gray-400">:</span>
-                  <div className="text-center">
-                    <span className="text-2xl font-bold text-white sm:text-3xl">{timeElapsed.days}</span>
-                    <p className="text-xs text-gray-300">days</p>
-                  </div>
-                  <span className="text-gray-400">:</span>
-                  <div className="text-center">
-                    <span className="text-2xl font-bold text-rose-400 sm:text-3xl">
-                      {String(timeElapsed.hours).padStart(2, "0")}
-                    </span>
-                    <p className="text-xs text-gray-300">hrs</p>
-                  </div>
-                  <span className="text-gray-400">:</span>
-                  <div className="text-center">
-                    <span className="text-2xl font-bold text-rose-400 sm:text-3xl">
-                      {String(timeElapsed.minutes).padStart(2, "0")}
-                    </span>
-                    <p className="text-xs text-gray-300">min</p>
-                  </div>
-                  <span className="text-gray-400">:</span>
-                  <div className="text-center">
-                    <span className="text-2xl font-bold text-rose-400 sm:text-3xl">
-                      {String(timeElapsed.seconds).padStart(2, "0")}
-                    </span>
-                    <p className="text-xs text-gray-300">sec</p>
-                  </div>
+        {/* Life Timer */}
+        {timeElapsed && (
+          <div className="flex justify-center mb-8 sm:mb-10">
+            <div className="px-6 py-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+              <p className="text-xs text-gray-300 uppercase tracking-wider mb-3">My Time on Earth</p>
+              <div className="flex items-center gap-3 sm:gap-4">
+                <div className="text-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-white">{timeElapsed.years}</span>
+                  <p className="text-xs text-gray-300">years</p>
+                </div>
+                <span className="text-gray-400">:</span>
+                <div className="text-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-white">{timeElapsed.months}</span>
+                  <p className="text-xs text-gray-300">months</p>
+                </div>
+                <span className="text-gray-400">:</span>
+                <div className="text-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-white">{timeElapsed.days}</span>
+                  <p className="text-xs text-gray-300">days</p>
+                </div>
+                <span className="text-gray-400">:</span>
+                <div className="text-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-rose-400">{String(timeElapsed.hours).padStart(2, '0')}</span>
+                  <p className="text-xs text-gray-300">hrs</p>
+                </div>
+                <span className="text-gray-400">:</span>
+                <div className="text-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-rose-400">{String(timeElapsed.minutes).padStart(2, '0')}</span>
+                  <p className="text-xs text-gray-300">min</p>
+                </div>
+                <span className="text-gray-400">:</span>
+                <div className="text-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-rose-400">{String(timeElapsed.seconds).padStart(2, '0')}</span>
+                  <p className="text-xs text-gray-300">sec</p>
                 </div>
               </div>
             </div>
-          )}
-
-          {/* Social Links & Resume */}
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            {/* Social Icons */}
-            <div className="flex items-center gap-3">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.id}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-xl border border-white/10 bg-white/5 p-3 text-gray-300 transition-all duration-300 hover:border-rose-500/50 hover:bg-rose-500/10 hover:text-rose-400"
-                  aria-label={link.name}
-                >
-                  {getSocialIcon(link.icon)}
-                </a>
-              ))}
-            </div>
-
-            {/* Resume Button */}
-            <button onClick={handleResumeClick} className="btn-accent flex items-center gap-2">
-              <FaFileAlt className="h-4 w-4" />
-              <span>Resume</span>
-            </button>
           </div>
-        </div>
+        )}
 
-        {/* Right: Spline robot only */}
-        <div className="relative mx-auto w-full max-w-[700px] lg:mx-0 lg:justify-self-end">
-          <div className="relative h-[420px] w-full overflow-hidden rounded-2xl border border-white/10 sm:h-[520px]">
-            <SplineScene
-              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-              zoom={0.55}
-              forceZoomMs={2000}
-              className="h-full w-full spline-transparent"
-            />
+        {/* Social Links & Resume */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          {/* Social Icons */}
+          <div className="flex items-center gap-3">
+            {socialLinks.map((link) => (
+              <a
+                key={link.id}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-rose-400 hover:border-rose-500/50 hover:bg-rose-500/10 transition-all duration-300"
+                aria-label={link.name}
+              >
+                {getSocialIcon(link.icon)}
+              </a>
+            ))}
           </div>
+
+          {/* Resume Button */}
+          <button
+            onClick={handleResumeClick}
+            className="btn-accent flex items-center gap-2"
+          >
+            <FaFileAlt className="w-4 h-4" />
+            <span>Resume</span>
+          </button>
         </div>
       </div>
 
