@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, FormEvent, PointerEvent as ReactPointerEvent, useEffect, useRef, useState } from "react";
+import { CSSProperties, FormEvent, PointerEvent as ReactPointerEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { FaEnvelope, FaGithub, FaLink, FaLinkedinIn } from "react-icons/fa";
 import TechIcon from "@/components/ui/TechIcon";
 import { education } from "@/data/education";
@@ -17,6 +17,17 @@ const systemMessages = [
   "PLEASE HOLD",
 ];
 const BIRTH_DATE = new Date("2004-03-01T10:00:00");
+const creatorLinks = [
+  { name: "Beacons", url: "https://beacons.ai/sagarsahu?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnpCBqzLDHlZql3LGJK8TLsQAREiQenQOsmEqk_IIxpzNn9MTFNJPJle0d8g0_aem_4DTpW-I6B7OTIgdDAVikkg" },
+  { name: "Instagram", url: "https://www.instagram.com/morebysagar" },
+  { name: "TikTok", url: "https://www.tiktok.com/@sagarsahu8749" },
+];
+const knowledgeCards = [
+  ...education.coursework.slice(0, 10),
+  education.coursework[education.coursework.length - 1],
+].filter((course): course is string => Boolean(course));
+const heroNameWords = ["Sagar", "Sahu"] as const;
+const cipherGlyphs = "0123456789ABCDEF";
 
 type VariableStyle = CSSProperties & Record<`--${string}`, string | number>;
 
@@ -36,8 +47,26 @@ interface SignalMotion {
   velocity: number;
 }
 
+interface ProjectParticle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  scale: number;
+}
+
 function clamp(value: number, min = 0, max = 1) {
   return Math.max(min, Math.min(max, value));
+}
+
+function scrambleHeroWord(word: string, frame: number, totalFrames: number) {
+  const resolveStart = Math.floor(totalFrames * 0.45);
+  const resolution = clamp((frame - resolveStart) / Math.max(totalFrames - resolveStart, 1));
+  const resolvedCharacters = Math.floor(resolution * word.length);
+
+  return Array.from(word).map((character, index) => (
+    index < resolvedCharacters ? character : cipherGlyphs[Math.floor(Math.random() * cipherGlyphs.length)]
+  )).join("");
 }
 
 function calculateTimeElapsed(): TimeElapsed {
@@ -171,6 +200,70 @@ function TimeOnEarth() {
   );
 }
 
+function MonochromeLogo({ src, alt, className = "", dropLight = false }: { src: string; alt: string; className?: string; dropLight?: boolean }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    let cancelled = false;
+    const image = new Image();
+    image.decoding = "async";
+    image.onload = () => {
+      if (cancelled) return;
+      const context = canvas.getContext("2d", { willReadFrequently: true });
+      if (!context) return;
+
+      const size = 220;
+      canvas.width = size;
+      canvas.height = size;
+      context.clearRect(0, 0, size, size);
+      context.drawImage(image, 0, 0, size, size);
+
+      const pixels = context.getImageData(0, 0, size, size);
+      const { data } = pixels;
+      const cornerOffsets = [0, size - 1, (size - 1) * size, size * size - 1];
+      const background = cornerOffsets.reduce<[number, number, number]>((total, pixelIndex) => {
+        const offset = pixelIndex * 4;
+        return [total[0] + data[offset], total[1] + data[offset + 1], total[2] + data[offset + 2]];
+      }, [0, 0, 0]).map((channel) => channel / cornerOffsets.length);
+
+      for (let offset = 0; offset < data.length; offset += 4) {
+        const red = data[offset];
+        const green = data[offset + 1];
+        const blue = data[offset + 2];
+        const luminance = red * 0.2126 + green * 0.7152 + blue * 0.0722;
+        const distance = Math.hypot(red - background[0], green - background[1], blue - background[2]);
+        const foreground = dropLight && luminance > 225 ? 0 : clamp((distance - 34) / 102, 0, 1);
+
+        data[offset] = 7;
+        data[offset + 1] = 17;
+        data[offset + 2] = 31;
+        data[offset + 3] = Math.round(data[offset + 3] * foreground);
+      }
+
+      context.putImageData(pixels, 0, 0);
+    };
+    image.src = src;
+
+    return () => {
+      cancelled = true;
+      image.onload = null;
+    };
+  }, [dropLight, src]);
+
+  return <canvas ref={canvasRef} className={`monochrome-logo ${className}`.trim()} width="220" height="220" role="img" aria-label={alt} />;
+}
+
+function HeroCipherWord({ word, displayText, isScrambling }: { word: string; displayText: string; isScrambling: boolean }) {
+  return (
+    <h1 className={`hero-cipher${isScrambling ? " is-scrambling" : ""}`} aria-label={word}>
+      {Array.from(displayText).map((character, index) => <span aria-hidden="true" key={`${word}-${index}`}>{character}</span>)}
+    </h1>
+  );
+}
+
 function CareerScene() {
   return (
     <div className="career-scroll-scene" data-career-scene style={{ "--career-scene-height": `${105 + experiences.length * 58}svh`, "--career-progress": 0, "--career-cursor-y": "0px" } as VariableStyle}>
@@ -212,49 +305,83 @@ function ProjectCaseSignal({ index }: { index: number }) {
 
 function ProjectScene({ onProjectOpen }: { onProjectOpen: (id: string) => void }) {
   const scanRings = Array.from({ length: 5 }, (_, index) => index);
-  const particleFieldRef = useRef<HTMLDivElement>(null);
-  const particleCursorRef = useRef(0);
-  const lastParticleBurstRef = useRef(0);
+  const particleCanvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<ProjectParticle[]>([]);
+  const particleFrameRef = useRef(0);
+
+  const animateProjectParticles = () => {
+    const canvas = particleCanvasRef.current;
+    if (!canvas) return;
+
+    const bounds = canvas.getBoundingClientRect();
+    if (bounds.width === 0 || bounds.height === 0) return;
+
+    const pixelRatio = window.devicePixelRatio || 1;
+    const canvasWidth = Math.round(bounds.width * pixelRatio);
+    const canvasHeight = Math.round(bounds.height * pixelRatio);
+    if (canvas.width !== canvasWidth || canvas.height !== canvasHeight) {
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
+    }
+
+    const context = canvas.getContext("2d");
+    if (!context) return;
+    context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    context.clearRect(0, 0, bounds.width, bounds.height);
+    context.fillStyle = "#f3f0e8";
+
+    particlesRef.current = particlesRef.current.filter((particle) => {
+      particle.x += particle.vx;
+      particle.y += particle.vy;
+      particle.vy += 0.45;
+      particle.scale = Math.min(1, particle.scale + Math.random() * 0.01);
+
+      context.globalAlpha = particle.scale;
+      context.beginPath();
+      context.arc(particle.x, particle.y, 9 * particle.scale, 0, Math.PI * 2);
+      context.fill();
+
+      return particle.y <= bounds.height + 18;
+    });
+    context.globalAlpha = 1;
+
+    particleFrameRef.current = particlesRef.current.length > 0
+      ? window.requestAnimationFrame(animateProjectParticles)
+      : 0;
+  };
 
   const burstProjectParticles = (event: ReactPointerEvent<HTMLButtonElement>) => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const now = performance.now();
-    if (now - lastParticleBurstRef.current < 62) return;
-    lastParticleBurstRef.current = now;
+    if (window.matchMedia("(prefers-reduced-motion: reduce), (max-width: 640px)").matches) return;
 
-    const field = particleFieldRef.current;
-    if (!field) return;
-    const fieldRect = field.getBoundingClientRect();
-    const particles = Array.from(field.querySelectorAll<HTMLElement>("[data-project-particle]"));
-    const originX = event.clientX - fieldRect.left;
-    const originY = event.clientY - fieldRect.top;
+    const canvas = particleCanvasRef.current;
+    if (!canvas) return;
+    const cardBounds = event.currentTarget.getBoundingClientRect();
+    const canvasBounds = canvas.getBoundingClientRect();
+    const burstSize = event.pointerType === "touch" ? 3 : 6;
+    const originX = cardBounds.left + cardBounds.width / 2 - canvasBounds.left;
+    const originY = cardBounds.top + cardBounds.height / 2 - canvasBounds.top;
 
-    Array.from({ length: 2 }, (_, burstIndex) => {
-      const particle = particles[particleCursorRef.current % particles.length];
-      particleCursorRef.current += 1;
-      if (!particle) return;
-      const seed = particleCursorRef.current * 1.618 + burstIndex * 0.72;
-      const angle = seed * 2.39;
-      const distance = 30 + (particleCursorRef.current % 7) * 11;
-      particle.getAnimations().forEach((animation) => animation.cancel());
-      particle.style.left = `${originX}px`;
-      particle.style.top = `${originY}px`;
-      particle.animate(
-        [
-          { opacity: 0, transform: "translate(-50%, -50%) scale(0.35)" },
-          { opacity: 0.96, offset: 0.16, transform: "translate(-50%, -50%) scale(1)" },
-          { opacity: 0, transform: `translate(calc(-50% + ${Math.cos(angle) * distance}px), calc(-50% + ${Math.sin(angle) * distance}px)) scale(0.45)` },
-        ],
-        { duration: 460 + (particleCursorRef.current % 4) * 70, easing: "cubic-bezier(0.22, 0.9, 0.25, 1)", fill: "both" }
-      );
-    });
+    particlesRef.current.push(...Array.from({ length: burstSize }, () => ({
+      x: originX,
+      y: originY,
+      vx: -5 + Math.random() * 10,
+      vy: -15 + Math.random() * 10,
+      scale: 0.25 + Math.random() * 0.75,
+    })));
+
+    if (!particleFrameRef.current) particleFrameRef.current = window.requestAnimationFrame(animateProjectParticles);
   };
+
+  useEffect(() => () => {
+    window.cancelAnimationFrame(particleFrameRef.current);
+    particlesRef.current = [];
+  }, []);
 
   return (
     <div className="project-scroll-scene" data-project-scene style={{ "--project-scene-height": `${110 + projects.length * 54}svh`, "--project-progress": 0 } as VariableStyle}>
       <div className="project-sticky">
         <div className="project-arc-field" aria-hidden="true">{scanRings.map((ring) => <i key={ring} style={{ "--ring-index": ring } as VariableStyle} />)}</div>
-        <div ref={particleFieldRef} className="project-particle-field" aria-hidden="true">{Array.from({ length: 20 }, (_, index) => <i data-project-particle key={index} />)}</div>
+        <canvas ref={particleCanvasRef} className="project-particle-canvas" aria-hidden="true" />
         <div className="project-console mono" aria-hidden="true"><span>Archive / 04</span><span data-project-readout>01 / {String(projects.length).padStart(2, "0")}</span></div>
         <ol className="project-node-rail mono" aria-label="Project index">
           {projects.map((project, index) => <li data-project-node key={project.id}><b>{String(index + 1).padStart(2, "0")}</b><span>{project.title}</span></li>)}
@@ -268,7 +395,7 @@ function ProjectScene({ onProjectOpen }: { onProjectOpen: (id: string) => void }
               key={project.id}
               aria-label={`Open ${project.title}`}
               onClick={() => onProjectOpen(project.id)}
-              onPointerMove={burstProjectParticles}
+              onPointerEnter={burstProjectParticles}
               style={{ "--project-index": index } as VariableStyle}
             >
               <span className="project-case-top mono"><span>Case / {String(index + 1).padStart(2, "0")}</span><span>System / {String(index + 1).padStart(2, "0")}</span></span>
@@ -286,6 +413,8 @@ function ProjectScene({ onProjectOpen }: { onProjectOpen: (id: string) => void }
 
 export default function Portfolio() {
   const [ready, setReady] = useState(false);
+  const [heroCipherWords, setHeroCipherWords] = useState<string[]>(() => [...heroNameWords]);
+  const [isHeroScrambling, setIsHeroScrambling] = useState(false);
   const [messageIndex, setMessageIndex] = useState(0);
   const [typedMessage, setTypedMessage] = useState("");
   const [isLightMode, setIsLightMode] = useState(false);
@@ -294,17 +423,25 @@ export default function Portfolio() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const canControlRestoration = "scrollRestoration" in window.history;
     const previousRestoration = canControlRestoration ? window.history.scrollRestoration : undefined;
     if (canControlRestoration) window.history.scrollRestoration = "manual";
 
-    const resetToTop = () => window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    resetToTop();
-    const frame = window.requestAnimationFrame(resetToTop);
+    const resetToHome = () => {
+      if (window.location.hash) {
+        window.history.replaceState(window.history.state, document.title, `${window.location.pathname}${window.location.search}`);
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    };
+
+    resetToHome();
+    const frame = window.requestAnimationFrame(resetToHome);
+    const timer = window.setTimeout(resetToHome, 0);
 
     return () => {
       window.cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
       if (canControlRestoration && previousRestoration) window.history.scrollRestoration = previousRestoration;
     };
   }, []);
@@ -313,6 +450,39 @@ export default function Portfolio() {
     const timer = window.setTimeout(() => setReady(true), 1650);
     return () => window.clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (!ready || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let cycleTimer = 0;
+    let frameTimer = 0;
+
+    const scheduleScramble = () => {
+      cycleTimer = window.setTimeout(() => {
+        const frameCount = 26;
+        let frame = 0;
+        setIsHeroScrambling(true);
+
+        frameTimer = window.setInterval(() => {
+          frame += 1;
+          setHeroCipherWords(heroNameWords.map((word) => scrambleHeroWord(word, frame, frameCount)));
+
+          if (frame >= frameCount) {
+            window.clearInterval(frameTimer);
+            setHeroCipherWords([...heroNameWords]);
+            setIsHeroScrambling(false);
+            scheduleScramble();
+          }
+        }, 48);
+      }, 6800 + Math.random() * 5200);
+    };
+
+    scheduleScramble();
+    return () => {
+      window.clearTimeout(cycleTimer);
+      window.clearInterval(frameTimer);
+    };
+  }, [ready]);
 
   useEffect(() => {
     let timer = 0;
@@ -389,6 +559,7 @@ export default function Portfolio() {
         card.style.setProperty("--dossier-opacity", visibility.toFixed(3));
         card.style.setProperty("--dossier-clip", `${clip.toFixed(1)}%`);
         card.style.setProperty("--dossier-scale", `${(0.92 + visibility * 0.08).toFixed(3)}`);
+        card.style.pointerEvents = visibility > 0.8 ? "auto" : "none";
       });
       nodes.forEach((node, index) => node.classList.toggle("is-current", Math.round(safePosition) === index));
     };
@@ -586,19 +757,27 @@ export default function Portfolio() {
         <header className="topbar">
           <a className="monogram" href="#home" aria-label="Sagar Sahu home">SS</a>
           <div className="microcopy mono" aria-live="polite"><span>{typedMessage}<b>_</b></span><span>SYNC / 09:41:36</span><span>BUILD / HUMAN-CENTRED</span><span>STATUS / ONLINE</span></div>
-          <nav className="site-nav" aria-label="Primary navigation"><a className="nav-link" href="#about">About</a><a className="nav-link" href="#work">Work</a><a className="nav-link" href="#contact">Contact</a></nav>
+          <nav className="site-nav" aria-label="Primary navigation"><a className="nav-link" href="#about">About</a><a className="nav-link" href="#work">Experience</a><a className="nav-link" href="#contact">Contact</a></nav>
           <div className="socials" aria-label="Social links">
             {socialLinks.filter((link) => link.id !== "linktree").map((link) => <a key={link.id} className="icon-link" href={link.url} target="_blank" rel="noreferrer" aria-label={link.name}>{link.id === "github" ? <FaGithub /> : <FaLinkedinIn />}</a>)}
             <a className="icon-link" href="#projects" aria-label="View projects"><FaLink /></a><a className="icon-link" href="#contact" aria-label="Send an email"><FaEnvelope /></a>
           </div>
           <button className="contrast-toggle" onClick={toggleTheme} aria-label="Toggle light and dark theme">{isLightMode ? "◑" : "◐"}</button>
-          <div className="headline-note"><span className="headline-role">Software engineer & AI product builder working in fintech</span><span className="headline-message"><span>Designing clear software for ambitious ideas</span><a className="headline-cta" href="#contact"><span aria-hidden="true">→</span><span>Start a conversation</span></a></span></div>
+          <div className="headline-note"><span className="headline-role">Software engineer & AI product builder working in fintech</span><span className="headline-message"><a className="headline-cta" href="#contact"><span aria-hidden="true">→</span><span>Let&apos;s start a conversation</span></a></span></div>
         </header>
 
         <section id="home">
           <div className="hero-field"><SignalField /><TimeOnEarth /></div>
           <div className="data-strip"><span>▸ {binary} &nbsp;&nbsp;&nbsp; {binary} &nbsp;&nbsp;&nbsp; {binary}</span></div>
-          <div className="hero-name"><h1 aria-label="Sagar"><span aria-hidden="true">S</span><span aria-hidden="true">a</span><span aria-hidden="true">g</span><span aria-hidden="true">a</span><span aria-hidden="true">r</span></h1><div className="spark">✦</div><h1 aria-label="Sahu"><span aria-hidden="true">S</span><span aria-hidden="true">a</span><span aria-hidden="true">h</span><span aria-hidden="true">u</span></h1></div>
+          <div className="hero-name">
+            <HeroCipherWord word={heroNameWords[0]} displayText={heroCipherWords[0]} isScrambling={isHeroScrambling} />
+            <div className="hero-sparks" aria-hidden="true">
+              <span className="spark spark--one"><i>✦</i></span>
+              <span className="spark spark--two"><i>✧</i></span>
+              <span className="spark spark--three"><i>✦</i></span>
+            </div>
+            <HeroCipherWord word={heroNameWords[1]} displayText={heroCipherWords[1]} isScrambling={isHeroScrambling} />
+          </div>
           <div className="data-strip"><span>▸ {binary} &nbsp;&nbsp;&nbsp; {binary} &nbsp;&nbsp;&nbsp; {binary}</span></div>
         </section>
 
@@ -610,12 +789,12 @@ export default function Portfolio() {
               <div className="eyebrow mono">Current trajectory<br />New York · 2026</div>
               <span className="about-status mono"><i aria-hidden="true" />Status / online</span>
             </aside>
-            <div className="about-copy" data-reveal><h2 className="about-title"><span>About</span><span>me.</span></h2><p className="about-lead">I&apos;m Sagar — a full-stack software engineer and computer scientist who enjoys shaping messy, high-stakes problems into software people can actually use.</p></div>
+            <div className="about-copy" data-reveal><h2 className="about-title"><span>About</span><span>Me</span></h2><p className="about-lead">I&apos;m Sagar — a full-stack software engineer and computer scientist who enjoys shaping messy, high-stakes problems into software people can actually use.</p></div>
             <div className="about-operating-field" data-reveal aria-label="Operating fields: product engineering, software development, applied AI, and financial technology."><span className="mono">Operating field</span><div className="field-diagram"><i className="field-link field-link--one" aria-hidden="true" /><i className="field-link field-link--two" aria-hidden="true" /><i className="field-link field-link--three" aria-hidden="true" /><span className="field-node field-node--one"><b>01</b><em>Product<br />engineering</em></span><span className="field-node field-node--two"><b>02</b><em>Applied AI</em></span><span className="field-node field-node--three"><b>03</b><em>Financial<br />technology</em></span><span className="field-node field-node--four"><b>04</b><em>Software<br />development</em></span></div></div>
             <p className="about-side" data-reveal>I work across product engineering, software development, applied AI, and financial technology. From intelligent workflows to consumer tools, I care about thoughtful systems that feel clear, quick, and human.</p>
             <div className="about-records" data-reveal>
-              <article className="about-education-record"><span className="mono">Education / 01</span><div className="about-record-heading"><img src={education.logo} alt="Rensselaer Polytechnic Institute" /><div><h3>{education.degree}</h3><p>{education.school}</p></div></div><p className="about-record-meta">{education.location} · {education.startDate} — {education.endDate}<br />{education.concentration} · Minor in {education.minor}</p></article>
-              <article className="about-creator-record"><span className="mono">Content / UGC</span><h3>Creator<br />work.</h3><p>Find my content, UGC work, professional updates, and the things I&apos;m building outside the code editor.</p><div className="about-creator-links">{socialLinks.map((link) => <a key={link.id} href={link.url} target="_blank" rel="noreferrer">{link.id === "linktree" ? "Content & UGC" : link.name} <b>↗</b></a>)}</div></article>
+              <article className="about-education-record"><span className="mono">Education / 01</span><div className="about-record-heading"><MonochromeLogo src={education.logo} alt="Rensselaer Polytechnic Institute logo" className="education-logo" dropLight /><div><h3>{education.degree}</h3><p>{education.school}</p></div></div><div className="about-record-meta"><span>{education.location}</span><span>{education.startDate} — {education.endDate}</span><span>{education.concentration}</span><span>Minor in {education.minor}</span></div><section className="education-knowledge" aria-label="Relevant knowledge"><span className="education-section-label mono">Relevant Knowledge</span><ul className="knowledge-list">{knowledgeCards.map((course) => <li key={course}>{course}</li>)}</ul></section><div className="education-support-grid"><section className="education-support-group"><h4 className="mono">Honors &amp; Awards</h4><ul>{education.honors.map((honor) => <li key={honor}>{honor}</li>)}</ul></section><section className="education-support-group"><h4 className="mono">Extracurriculars</h4><ul>{education.extracurriculars.map((activity) => <li key={activity}>{activity}</li>)}</ul></section><section className="education-support-group"><h4 className="mono">Certifications</h4><ul>{education.certifications.map((certification) => <li key={certification}>{certification}</li>)}</ul></section></div></article>
+              <article className="about-creator-record"><span className="mono">Content / UGC</span><h3>Creator<br />work.</h3><span className="creator-accolade mono">2× Hackathon winner</span><p>Find my content, UGC work, professional updates, and the things I&apos;m building outside the code editor.</p><p>Outside of the code editor, I share experiments, lessons, and the small creative systems that shape how I build.</p><div className="about-creator-links">{creatorLinks.map((link) => <a key={link.name} href={link.url} target="_blank" rel="noreferrer">{link.name} <b>↗</b></a>)}</div></article>
             </div>
           </div>
         </section>
@@ -628,7 +807,7 @@ export default function Portfolio() {
 
         <section className="section perspective-section work-experience-section" id="work" data-stage>
           <div className="section-label mono"><span>03 / Work</span><span>Selected roles</span></div>
-          <div className="section-masthead work-masthead" data-reveal><span className="mono">Career record / 03</span><h2>Work</h2><p>A practical record of the systems, research, and product teams I&apos;ve helped move forward.</p></div>
+          <div className="section-masthead work-masthead" data-reveal><span className="mono">Career record / 03</span><h2>Experience</h2><p>A practical record of the systems, research, and product teams I&apos;ve helped move forward.</p></div>
           <CareerScene />
         </section>
 
@@ -642,13 +821,13 @@ export default function Portfolio() {
 
         <section className="section contact" id="contact" data-stage>
           <div className="section-label mono"><span>05 / Contact me</span><span>Open to conversation</span></div>
-          <div className="section-masthead contact-masthead" data-reveal><span className="masthead-icon" aria-hidden="true"><FaEnvelope /></span><h2>Contact<br />me.</h2><p>Have a product, an engineering challenge, or a great idea? Send a note. I&apos;m always interested in meeting people who are building with intention.</p></div>
+          <div className="section-masthead contact-masthead" data-reveal><span className="masthead-icon" aria-hidden="true"><FaEnvelope /></span><h2>Let's connect</h2><p>Have a product, an engineering challenge, or a great idea? Send a note. I&apos;m always interested in meeting people who are building with intention.</p></div>
           <div className="contact-grid">
             <div className="contact-links"><span className="mono">Find me elsewhere</span><div className="contact-social">{socialLinks.map((link) => <a key={link.id} href={link.url} target="_blank" rel="noreferrer">{link.name} ↗</a>)}</div></div>
             <form className="contact-form" onSubmit={submit}><input className="field" required placeholder="Your name" value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /><input className="field" type="email" required placeholder="Email address" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} /><input className="field" required placeholder="What&apos;s this about?" value={form.subject} onChange={(event) => setForm({ ...form, subject: event.target.value })} /><textarea className="field" required placeholder="Your message" value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} /><button className="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Send message →"}</button>{status === "success" && <p className="form-status success">Message received — I&apos;ll be in touch.</p>}{status === "error" && <p className="form-status error">Something went wrong. Please try again.</p>}</form>
           </div>
         </section>
-        <footer className="footer"><span>© {new Date().getFullYear()} Sagar Sahu</span><span>Built in New York · Next.js</span></footer>
+        <footer className="footer"><span>© {new Date().getFullYear()} Sagar Sahu. All rights Reserved.</span><span>Built in New York</span></footer>
       </div>
     </main>
   );
