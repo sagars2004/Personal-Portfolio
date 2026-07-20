@@ -1,23 +1,10 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
 export const metadata: Metadata = {
-  title: "Sagar Sahu | Software Developer",
+  title: "Sagar Sahu | Software Engineer",
   description:
-    "Personal portfolio of Sagar Sahu - Software Developer, AI Enthusiast, and Computer Science student at RPI. Building intelligent, scalable, and impactful solutions.",
+    "Personal portfolio of Sagar Sahu — software engineer building useful systems at the intersection of product, AI, and finance.",
   keywords: [
     "Sagar Sahu",
     "Software Developer",
@@ -43,11 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body
-        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased bg-[#0a0a0b] text-white`}
-      >
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

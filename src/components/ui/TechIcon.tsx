@@ -33,17 +33,17 @@ import {
   SiLooker,
   SiApachemaven,
   SiGooglegemini,
-  SiAnthropic,
+  SiClaude,
   SiOpenai,
-  SiGooglecloud,
   SiAppstore,
 } from "react-icons/si";
-import { FaJava, FaLaptopCode, FaRobot } from "react-icons/fa";
+import { FaAtom, FaICursor, FaJava, FaRobot } from "react-icons/fa";
 
 interface TechIconProps {
   icon: string;
   name: string;
   className?: string;
+  compact?: boolean;
 }
 
 const iconMap: Record<string, React.ElementType> = {
@@ -80,15 +80,19 @@ const iconMap: Record<string, React.ElementType> = {
   looker: SiLooker,
   maven: SiApachemaven,
   gemini: SiGooglegemini,
-  claude: SiAnthropic,
+  claude: SiClaude,
   watsonx: FaRobot,
-  cursor: FaLaptopCode,
+  cursor: FaICursor,
   openai: SiOpenai,
-  antigravity: SiGooglecloud,
+  antigravity: FaAtom,
 };
 
-export default function TechIcon({ icon, name, className = "" }: TechIconProps) {
+export default function TechIcon({ icon, name, className = "", compact = false }: TechIconProps) {
   const IconComponent = iconMap[icon];
+
+  if (compact) {
+    return IconComponent ? <IconComponent className={className} aria-label={`${name} logo`} /> : <span className={className} aria-label={`${name} logo`}>?</span>;
+  }
 
   if (!IconComponent) {
     return (
